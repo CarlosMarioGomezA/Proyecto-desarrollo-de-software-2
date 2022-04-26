@@ -1,3 +1,4 @@
+const conexion = require("../database/conexionBD");
 const Usuario = require("../models/Usuario");
 
 
@@ -23,14 +24,22 @@ class UsuarioController{
 
     //metodo que obtiene todos los usuarios de bd
     obtenerUsuarios(req,res){
-        req.getConnection((err,conn)=>{
-            conn.query('select * from usuario', (err,data) => {
-                if(err){
-                    res.status(500).send();
-                }else{
-                    res.status(200).send(data);
-                }
-            });
+        // req.getConnection((err,conn)=>{
+        //     conn.query('select * from usuario', (err,data) => {
+        //         if(err){
+        //             res.status(500).send();
+        //         }else{
+        //             res.status(200).send(data);
+        //         }
+        //     });
+        // });
+
+        conexion.query('select * from usuario', (err,data) => {
+                    if(err){
+                        res.status(500).send();
+                    }else{
+                        res.status(200).send(data);
+                    }
         });
     }
 
