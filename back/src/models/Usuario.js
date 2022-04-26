@@ -1,6 +1,6 @@
 class Usuario {
 
-    constructor(nombreUsuario, password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono){
+    constructor(nombreUsuario, password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono,estado){
         this.nombre_usuario = nombreUsuario;
         this.password_usuario = password;
         this.nombre = nombre;
@@ -11,9 +11,14 @@ class Usuario {
         this.email = correo;
         this.id_rol = rol;
         this.telefono = telefono;
-        this.estado = "Activo";
+        if(!this.estado){
+            this.estado = "Activo";
+        }else{
+            this.estado = estado;
+        }
     }
 
 }
 
 module.exports = Usuario;
+

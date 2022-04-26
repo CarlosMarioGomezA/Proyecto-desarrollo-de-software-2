@@ -12,10 +12,9 @@ class UsuarioRouter{
         //instance to controller
         const crtl = new UsuarioController();
         this.router.post('/usuarios',crtl.crearUsuario);
-        this.router.get('/usuarios',crtl.obtenerUsuarios);
-        // this.router.delete('/users',crtl.deleteUser);
-        // this.router.put('/users',crtl.updateUser);
-
+        this.router.get('/usuarios',crtl.obtenerUsuariosActivos);
+        this.router.get('/usuarios/:id',crtl.obtenerUsuario);
+        this.router.put('/usuarios/:id',crtl.actualizarUsuario);
     }
 
 }

@@ -1,16 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-// const bd = require ("./database/bd");
-// const expressMyconnection = require("express-myconnection");
-// const mysql = require("mysql");
 const UsuarioRouter  = require("./routes/UsuarioRouter");
 
 class Server {
 
     constructor (){
         this.app = express();
-        // this.conectarBD();
         this.config();
     }
 
@@ -39,18 +35,6 @@ class Server {
             console.log("Servidor corriendo por el puerto => ", this.app.get('port'));
         });
     }
-
-    // conectarBD(){
-    //     try {
-    //         
-    //         // this.app.use(expressMyconnection(mysql,bd,'single'));
-            
-    //     } catch (error) {
-    //         console.log("No se ha establecido la conexion a BD");
-    //     }
-
-        
-    // }
 
 }
 
