@@ -11,7 +11,7 @@ class Usuario {
         this.email = correo;
         this.id_rol = rol;
         this.telefono = telefono;
-        if(!this.estado){
+        if(estado==undefined){
             this.estado = "Activo";
         }else{
             this.estado = estado;
