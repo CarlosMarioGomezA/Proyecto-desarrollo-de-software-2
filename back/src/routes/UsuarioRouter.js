@@ -10,11 +10,12 @@ class UsuarioRouter{
 
     config(){
         //instance to controller
-        const crtl = new UsuarioController();
-        this.router.post('/usuarios',crtl.crearUsuario);
-        this.router.get('/usuarios',crtl.obtenerUsuariosActivos);
-        this.router.get('/usuarios/:id',crtl.obtenerUsuario);
-        this.router.put('/usuarios/:id',crtl.actualizarUsuario);
+        const ctrl = new UsuarioController();
+        this.router.post('/usuarios',ctrl.crearUsuario);
+        this.router.get('/usuarios',ctrl.obtenerUsuariosActivos);
+        this.router.get('/usuarios/:id',ctrl.obtenerUsuario);
+        this.router.put('/usuarios/:id',ctrl.actualizarUsuario);
+        this.router.post('/usuarios/auth',ctrl.login);
     }
 
 }

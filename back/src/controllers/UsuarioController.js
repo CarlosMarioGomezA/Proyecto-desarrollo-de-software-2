@@ -1,5 +1,7 @@
+const jwt = require('jsonwebtoken')
 const conexion = require("../database/conexionBD");
 const Usuario = require("../models/Usuario");
+require('dotenv').config();
 
 
 class UsuarioController {
@@ -15,10 +17,30 @@ class UsuarioController {
             if (err) {
                 res.status(500).send();
             } else {
-                res.status(201).send();
+                let payload = {id: data.id};
+                let token = jwt.sign(payload,process.env.PRIVATE_KEY);
+                res.status(201).json({token});
             }
         });
 
+    }
+
+    login(req,res){
+        let {correo, password} = req.body;
+
+        conexion.query('select * from usuario where email = ? and password_usuario = ?',[correo, password], (err, data) => {
+            if(err){
+                res.status(500).json({error});
+            }else{
+                if(data !== null && data !== undefined){
+                    let payload = {id: data.id};
+                    let token = jwt.sign(payload,process.env.PRIVATE_KEY);
+                    res.status(200).json({token});
+                }else{
+                    res.status(401).json({info: 'Credenciales inválidas'});
+                }
+            }
+        })
     }
 
     //metodo que obtiene todos los usuarios con estado activo de bd
