@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken')
 const conexion = require("../database/conexionBD");
 const Usuario = require("../models/Usuario");
-require('dotenv').config();
 
 
 class UsuarioController {
