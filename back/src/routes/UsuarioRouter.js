@@ -15,7 +15,6 @@ class UsuarioRouter{
         this.router.get('/usuarios',ctrl.obtenerUsuariosActivos);
         this.router.get('/usuarios/:id',ctrl.obtenerUsuario);
         this.router.put('/usuarios/:id',ctrl.actualizarUsuario);
-        this.router.post('/usuarios/auth',ctrl.login);
     }
 
 }
