@@ -7,6 +7,31 @@ const routes: RouteRecordRaw[] = [
     alias: '/login',
     name: 'login',
     component: () => import('@/views/vistaIniciarSesion.vue'),
+  },
+  {
+    path: '/registrar-usuario',
+    name: 'RegistarUsuario',
+    component: () => import('@/views/vistaRegistrarUsuario.vue')
+  },
+  {
+    path: '/buscar-usuario',
+    name: 'BuscarUsuario',
+    component: () => import('@/views/vistaBuscarUsuario.vue')
+  },
+  {
+    path: '/actulizar-usuario',
+    name: 'ActualizarUsuario',
+    component: () => import('@/views/vistaActualizarUsuario.vue')
+  },
+  {
+    path: '/recuperar-pass',
+    name: 'RecuperarPassword',
+    component: () => import('@/views/vistaRecuperarPassword.vue')
+  },
+  {
+    path: '/preguntas-seguridad',
+    name: 'PreguntasSeguridad',
+    component: () => import('@/views/vistaPreguntasSeguridad.vue')
   }
 ]
 
