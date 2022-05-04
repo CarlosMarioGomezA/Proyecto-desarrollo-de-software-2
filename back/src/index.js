@@ -1,7 +1,9 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const UsuarioRouter  = require("./routes/UsuarioRouter");
+const AuthRouter = require('./routes/AuthRouter');
 
 class Server {
 
@@ -28,7 +30,9 @@ class Server {
         this.app.use(router);
         
         let objUsuRouter = new UsuarioRouter();
+        let objAuthRouter = new AuthRouter();
         this.app.use(objUsuRouter.router);
+        this.app.use(objAuthRouter.router);
 
         //Servidor a la escucha
         this.app.listen(this.app.get('port'), () => {

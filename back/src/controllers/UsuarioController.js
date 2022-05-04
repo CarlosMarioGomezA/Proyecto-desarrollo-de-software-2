@@ -5,17 +5,22 @@ const Usuario = require("../models/Usuario");
 class UsuarioController {
 
     //metodo para crear usuario en bd
-    crearUsuario(req, res) {
+    async crearUsuario (req, res) {
         let body = req.body;
         let usuario = new Usuario(body["nombreUsuario"], body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
-            body["documento"], body["correo"], body["rol"], body["telefono"]);
+            body["documento"], body["correo"], body["rol"], body["telefono"],"Activo");
+        
+        //encripta contraseña
+        let pass = usuario.getPassword();
+        let passHash = await usuario.encriptarPassword(pass);
+        usuario.setPassword(passHash);
 
         conexion.query('insert into usuario set ?', [usuario], (err, data) => {
             if (err) {
                 res.status(500).send();
             } else {
-                res.status(201).send();
+                res.status(201).json({info: "usuario creado!"});
             }
         });
 
@@ -51,12 +56,17 @@ class UsuarioController {
     }
 
     //metodo que actualiza los datos de un usuario en especifico de bd
-    actualizarUsuario(req, res){
+    async actualizarUsuario(req, res){
         let id = req.params.id;
         let body = req.body;
         let usuario = new Usuario(body["nombreUsuario"], body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
             body["documento"], body["correo"], body["rol"], body["telefono"],body["estado"]);
+
+        //encripta contraseña
+        let pass = usuario.getPassword();
+        let passHash = await usuario.encriptarPassword(pass);
+        usuario.setPassword(passHash);
 
         if(id !== null && id !== undefined && id !== ""){
             conexion.query('update usuario set ? where id = ?',[usuario,id],(err, data) => {
