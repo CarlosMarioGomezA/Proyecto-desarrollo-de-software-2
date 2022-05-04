@@ -9,7 +9,7 @@ class UsuarioController {
         let body = req.body;
         let usuario = new Usuario(body["nombreUsuario"], body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
-            body["documento"], body["correo"], body["rol"], body["telefono"]);
+            body["documento"], body["correo"], body["rol"], body["telefono"],"Activo");
         
         //encripta contraseña
         let pass = usuario.getPassword();

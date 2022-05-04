@@ -13,11 +13,8 @@ class Usuario {
         this.email = correo;
         this.id_rol = rol;
         this.telefono = telefono;
-        if(estado !== undefined && estado !== null){
-            this.estado = estado;   
-        }else{
-            this.estado = "Activo"; //le asigna estado activo automaticamente al crear usuario
-        }
+        this.estado = estado; 
+        
     }
 
     //getters and setters a usar
