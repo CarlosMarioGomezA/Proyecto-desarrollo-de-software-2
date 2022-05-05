@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/vistaBuscarUsuario.vue')
   },
   {
-    path: '/actulizar-usuario',
+    path: '/actualizar-usuario',
     name: 'ActualizarUsuario',
     component: () => import('@/views/vistaActualizarUsuario.vue')
   },
