@@ -1,6 +1,7 @@
 export interface Usuario{
     nombreUsuario: string;
     password: string;
+    confirmarPassword: string;
     nombre: string;
     apellido: string;
     direccion: string;
@@ -9,5 +10,7 @@ export interface Usuario{
     rol: number;
     telefono: string;
     estado: string;
+    preguntaSeguridad1: string;
+    preguntaSeguridad2: string;
 }
 

@@ -7,7 +7,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputUsername" class="form-label">Nombre De Usuario</label>
         <input
-          v-model="nombreUsuario"
+          v-text="usuario.nombreUsuario"
           type="text"
           class="form-control"
           id="inputUsername"
@@ -19,7 +19,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputPassword" class="form-label">Contraseña</label>
         <input
-          v-model="password"
+          v-text="usuario.password"
           type="password" 
           class="form-control"
           id="inputPassword"
@@ -31,7 +31,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputPassword2" class="form-label">Confirmar contraseña</label>
         <input
-          v-model="confirmarPassword"
+          v-text="usuario.confirmarPassword"
           type="password"
           class="form-control"
           id="inputPassword2"
@@ -42,7 +42,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputNombre" class="form-label">Nombres</label>
         <input
-          v-model="nombre"
+          v-text="usuario.nombre"
           type="text"
           class="form-control"
           id="inputNombre"
@@ -54,7 +54,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputApellido" class="form-label">Apellidos</label>
         <input
-          v-model="apellido"
+          v-text="usuario.apellido"
           type="text"
           class="form-control"
           id="inputApellido"
@@ -65,7 +65,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-4">
         <label for="inputDireccion" class="form-label">Direccion</label>
         <input
-          v-model="direccion"
+          v-text="usuario.direccion"
           type="text"
           class="form-control"
           id="inputDireccion"
@@ -76,7 +76,7 @@ import { default } from '../components/Navbar.vue';
       <!--Tipo De Documento-->
       <div class="col-md-4">
         <label for="inputTipoDocumento" class="form-label">Tipo de documento</label>
-        <select v-model="tipoDocumento" id="inputTipoDocumento" class="form-select">
+        <select v-select="usuario.tipoDocumento" id="inputTipoDocumento" class="form-select">
           <option selected="true" disabled="disabled">Selecciona tipo de documento</option>
           <option>C.C</option>
           <option>T.I</option>
@@ -87,7 +87,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputNumeroDocumento" class="form-label">Número de documento</label>
         <input
-          v-model="numeroDocumento"
+          v-text="usuario.numeroDocumento"
           type="number"
           class="form-control"
           id="inputNumeroDocumento"
@@ -99,7 +99,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputTelefono" class="form-label">Telefono</label>
         <input
-          v-model="telefono"
+          v-text="usuario.telefono"
           type="tel"
           class="form-control"
           id="inputTelefono"
@@ -111,7 +111,7 @@ import { default } from '../components/Navbar.vue';
       <div class="col-md-4">
         <label for="inputEmail" class="form-label">Correo electronico</label>
         <input
-          v-model="correo"
+          v-text="usuario.correo"
           type="email"
           class="form-control"
           id="inputEmail"
@@ -122,7 +122,7 @@ import { default } from '../components/Navbar.vue';
       <!--Cargo-->
       <div class="col-md-4">
         <label for="inputCargo" class="form-label">Cargo</label>
-        <select class="form-select" id="inputCargo" v-model="cargo">
+        <select class="form-select" id="inputCargo" v-select="usuario.id">
           <option selected="true" disabled="disabled">Selecciona un rol</option>
           <option value="1">Gerente</option>
           <option value="2">Coordinador de transporte</option>
@@ -136,7 +136,7 @@ import { default } from '../components/Navbar.vue';
       <!-- Pregunta de seguridad #1 -->
       <div class="col-md-4">
         <label for="inputCargo" class="form-label">Pregunta de Seguridad #1</label>
-        <select class="form-select" id="inputCargo" v-model="preguntaSeguridad1">
+        <select class="form-select" id="inputCargo" v-select="usuario.preguntaSeguridad1">
           <option selected="true" disabled="disabled">Selecciona una pregunta</option>
         </select>
       </div>
@@ -144,7 +144,7 @@ import { default } from '../components/Navbar.vue';
       <!-- Pregunta de seguridad #2 -->
       <div class="col-md-4">
         <label for="inputCargo" class="form-label">Pregunta de Seguridad #2</label>
-        <select class="form-select" id="inputCargo" v-model="preguntaSeguridad2">
+        <select class="form-select" id="inputCargo" v-select="usuario.preguntaSeguridad2">
           <option selected="true" disabled="disabled">Selecciona una pregunta</option>
         </select>
       </div>
@@ -158,32 +158,18 @@ import { default } from '../components/Navbar.vue';
     </form>
 </template>
 
-<script>
+<script lang="ts">
+
     export default{
         name: 'formularioUsuarios',
-        data : ()=> {
-          return{
-            nombreUsuario: "",
-            password: "",
-            confirmarPassword: "",
-            nombre: "",
-            apellido: "",
-            direccion: "",
-            tipoDocumento: "",
-            numeroDocumento: "",
-            telefono: "",
-            correo: "",
-            cargo: "",
-            preguntaSeguridad1: "",
-            preguntaSeguridad2: ""
-          }
-          
+        props: {
+          usuario: {}
         },
-        // methods:{
-        //   enviarDatos(){
-        //     return console.log("");
-        //   }
-        // }
+        methods:{
+          // enviarDatos(){
+          //   this.$emit("enviarDatos",this.usuario)
+          // }
+        }
 
     }
     
