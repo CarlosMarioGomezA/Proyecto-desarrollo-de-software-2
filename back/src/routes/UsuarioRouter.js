@@ -1,5 +1,6 @@
 const express = require('express');
 const UsuarioController = require('../controllers/UsuarioController');
+const Autenticador = require('../middlewares/Autenticador');
 
 class UsuarioRouter{
 
@@ -11,10 +12,11 @@ class UsuarioRouter{
     config(){
         //instance to controller
         const ctrl = new UsuarioController();
-        this.router.post('/usuarios',ctrl.crearUsuario);
-        this.router.get('/usuarios',ctrl.obtenerUsuariosActivos);
-        this.router.get('/usuarios/:id',ctrl.obtenerUsuario);
-        this.router.put('/usuarios/:id',ctrl.actualizarUsuario);
+        const auth = new Autenticador();
+        this.router.post('/usuarios',[auth.verificaToken, auth.verificaEsAdmin],ctrl.crearUsuario);
+        this.router.get('/usuarios',[auth.verificaToken, auth.verificaEsAdmin],ctrl.obtenerUsuariosActivos);
+        this.router.get('/usuarios/:id',[auth.verificaToken, auth.verificaEsAdmin],ctrl.obtenerUsuario);
+        this.router.put('/usuarios/:id',[auth.verificaToken, auth.verificaEsAdmin],ctrl.actualizarUsuario);
     }
 
 }
