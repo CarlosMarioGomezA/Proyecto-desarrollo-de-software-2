@@ -1,4 +1,19 @@
 <template>
     <h1>Registrar Usuarios</h1>
-    hola mundo
+    <hr>
+    <formularioUsuarios></formularioUsuarios>
+    
+ 
 </template>
+
+<script>
+import formularioUsuarios from "@/views/vistaFormularioUsuario.vue";
+
+export default{
+    name: 'registrarUsuario',
+    components: {
+        formularioUsuarios
+    }
+}
+
+</script>
