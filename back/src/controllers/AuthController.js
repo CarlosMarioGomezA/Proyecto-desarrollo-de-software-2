@@ -18,7 +18,7 @@ class AuthController {
                     let coincidePassword = await usu.compararPassword(password, passDB); //compara el password del usuario con la de bd
                                                                                       
                     if (coincidePassword) {
-                        let payload = { id: data.id };
+                        let payload = { id: data[0].id };
                         let token = jwt.sign(payload, process.env.PRIVATE_KEY); //le asigna token 
                         res.status(200).json({ token });
                     } else {
