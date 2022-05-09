@@ -30,6 +30,16 @@ class Autenticador {
         }
     }
 
+    verificaEstado(req, res, next){
+        conexion.query('select * from usuario where id = ?',req.idUsuario , (err, data) => {
+            if (data[0].id_estado === 2) {
+                res.status(401).json({ info: 'Acceso bloqueado'});
+            }else{
+                next();
+            }
+        });
+    }
+
     verificaEsAdmin(req, res , next){
         conexion.query('select * from usuario where id = ?',req.idUsuario , (err, data) => {
             if (err) {
@@ -45,6 +55,8 @@ class Autenticador {
             }
         });
     }
+
+    
 
 }
 
