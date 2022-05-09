@@ -5,7 +5,11 @@ class Autenticador {
 
     verificaToken(req, res, next) {
         try {
-            let token = req.headers["x-access-token"];
+            let token; 
+
+            if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+                token = req.headers.authorization.split(' ')[1];
+            }
 
             if (!token) {
                 return res.status(403).json({ info: "No encontro token" });
@@ -23,12 +27,20 @@ class Autenticador {
             });
         } catch (error) {
             res.status(401).json({info: "No está autenticado"});
-            console.log(error)
         }
     }
 
+    verificaEstado(req, res, next){
+        conexion.query('select * from usuario where id = ?',req.idUsuario , (err, data) => {
+            if (data[0].id_estado === 2) {
+                res.status(401).json({ info: 'Acceso bloqueado'});
+            }else{
+                next();
+            }
+        });
+    }
+
     verificaEsAdmin(req, res , next){
-        console.log(req.idUsuario)
         conexion.query('select * from usuario where id = ?',req.idUsuario , (err, data) => {
             if (err) {
                 res.status(404).json({ info: "Usuario no encontrado" });
@@ -43,6 +55,8 @@ class Autenticador {
             }
         });
     }
+
+    
 
 }
 

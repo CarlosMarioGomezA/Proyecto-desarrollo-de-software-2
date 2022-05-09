@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt'); //libreria usada para encriptar
+const res = require('express/lib/response');
 
 class Usuario {
 
-    constructor(nombreUsuario, password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono,estado){
+    constructor(nombreUsuario, password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono, estado, intentos){
         this.nombre_usuario = nombreUsuario;
         this.password_usuario = password;
         this.nombre = nombre;
@@ -13,8 +14,8 @@ class Usuario {
         this.email = correo;
         this.id_rol = rol;
         this.telefono = telefono;
-        this.estado = estado; 
-        
+        this.id_estado = estado; 
+        this.intentos = intentos;
     }
 
     //getters and setters a usar
