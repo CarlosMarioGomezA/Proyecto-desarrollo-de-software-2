@@ -9,7 +9,7 @@ class UsuarioController {
         let body = req.body;
         let usuario = new Usuario(body["nombreUsuario"], body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
-            body["documento"], body["correo"], body["rol"], body["telefono"],"Activo");
+            body["documento"], body["correo"], body["rol"], body["telefono"], 1, 0);
         
         //encripta contraseña
         let pass = usuario.getPassword();
@@ -28,9 +28,9 @@ class UsuarioController {
 
     //metodo que obtiene todos los usuarios con estado activo de bd
     obtenerUsuariosActivos(req, res) {
-        conexion.query("select * from usuario where estado = 'Activo' ", (err, data) => {
+        conexion.query("select * from usuario where id_estado <> 3 ", (err, data) => {
             if (err) {
-                res.status(500).send();
+                res.status(500).send(err);
             } else {
                 res.status(200).send(data);
             }
@@ -61,7 +61,7 @@ class UsuarioController {
         let body = req.body;
         let usuario = new Usuario(body["nombreUsuario"], body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
-            body["documento"], body["correo"], body["rol"], body["telefono"],body["estado"]);
+            body["documento"], body["correo"], body["rol"], body["telefono"],body["estado"],0);
 
         //encripta contraseña
         let pass = usuario.getPassword();
@@ -71,7 +71,7 @@ class UsuarioController {
         if(id !== null && id !== undefined && id !== ""){
             conexion.query('update usuario set ? where id = ?',[usuario,id],(err, data) => {
                 if (err) {
-                    res.status(500).send();
+                    res.status(500).send(err);
                 } else {
                     res.status(200).send();
                 }
