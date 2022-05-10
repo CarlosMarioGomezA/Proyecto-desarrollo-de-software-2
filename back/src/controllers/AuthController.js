@@ -18,12 +18,14 @@ class AuthController {
                     let coincidePassword = await usu.compararPassword(password, passDB); //compara el password del usuario con la de bd
 
                     if (coincidePassword) { //valida si coincide el password
-                        conexion.query('update usuarios set intentos = ? where email = ?', [0, correo]);
+
+                        conexion.query('update usuario set intentos = ? where email = ?', [0, correo]);
+
                         let payload = { id: data[0].id };
                         let token = jwt.sign(payload, process.env.PRIVATE_KEY);
                         res.status(200).json({ token });
                     } else {
-                        conexion.query('update usuarios set intentos = intentos + 1 where email = ?', correo)
+                        conexion.query('update usuario set intentos = intentos + 1 where email = ?', correo)
                         res.status(401).json({ info: 'Credenciales inválidas' });
                     }
                 } catch (error) {
