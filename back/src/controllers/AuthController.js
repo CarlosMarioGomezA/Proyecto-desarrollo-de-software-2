@@ -9,7 +9,7 @@ class AuthController {
         let { correo, password } = req.body;
         let usu = new Usuario();
 
-        conexion.query('select * from usuario where email = ?', correo, async (err, data) => {
+        conexion.query('select * from usuarios where email = ?', correo, async (err, data) => {
             if (err) {
                 res.status(500).json({ err });  //devuelve error al consultar de manera erronea a bd
             } else {
@@ -18,7 +18,9 @@ class AuthController {
                     let coincidePassword = await usu.compararPassword(password, passDB); //compara el password del usuario con la de bd
 
                     if (coincidePassword) { //valida si coincide el password
+
                         conexion.query('update usuario set intentos = ? where email = ?', [0, correo]);
+
                         let payload = { id: data[0].id };
                         let token = jwt.sign(payload, process.env.PRIVATE_KEY);
                         res.status(200).json({ token });

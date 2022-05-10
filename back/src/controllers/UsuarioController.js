@@ -5,40 +5,28 @@ const Usuario = require("../models/Usuario");
 class UsuarioController {
 
     //metodo para crear usuario en bd
-    async crearUsuario (req, res) {
+    async crearUsuario(req, res) {
         let body = req.body;
         let usuario = new Usuario(body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
             body["documento"], body["correo"], body["rol"], body["telefono"], 1, 0);
-        
+
         //encripta contraseña
         let pass = usuario.getPassword();
         let passHash = await usuario.encriptarPassword(pass);
         usuario.setPassword(passHash);
-
-        conexion.query('select * from usuario where email = ?', usuario.email, (err, data) => {
+        conexion.query('insert into usuarios set ?', [usuario], (err, data) => {
             if (err) {
                 res.status(500).send();
             } else {
-                if(data[0] !== null && data[0] !== undefined){
-                    res.status(500).json({info: "usuario con email existente"});
-                }else{
-                    conexion.query('insert into usuario set ?', [usuario], (err, data) => {
-                        if (err) {
-                            res.status(500).send();
-                        } else {
-                            res.status(201).json({info: "usuario creado!"});
-                        }
-                    });
-                }
+                res.status(201).json({ info: "usuario creado!" });
             }
         });
-
     }
 
     //metodo que obtiene todos los usuarios con estado activo de bd
     obtenerUsuariosActivos(req, res) {
-        conexion.query("select * from usuario where id_estado <> 3 ", (err, data) => {
+        conexion.query("select * from usuarios where id_estado <> 3 ", (err, data) => {
             if (err) {
                 res.status(500).send(err);
             } else {
@@ -51,46 +39,46 @@ class UsuarioController {
     obtenerUsuario(req, res) {
         let id = req.params.id;
 
-        if(id !== null && id !== undefined && id !== ""){
-            conexion.query('select * from usuario where id = ?',[id],(err, data) => {
+        if (id !== null && id !== undefined && id !== "") {
+            conexion.query('select * from usuarios where id = ?', [id], (err, data) => {
                 if (err) {
                     res.status(500).send();
                 } else {
                     res.status(200).send(data);
                 }
             });
-        }else{
+        } else {
             res.status(400).send();
         }
-        
+
     }
 
     //metodo que actualiza los datos de un usuario en especifico de bd
-    async actualizarUsuario(req, res){
-        let id = req.params.id;
+    async actualizarUsuario(req, res) {
+        let documento = req.params.documento;
         let body = req.body;
         let usuario = new Usuario(body["password"], body["nombre"],
             body["apellido"], body["direccion"], body["tipoDocumento"],
-            body["documento"], body["correo"], body["rol"], body["telefono"],body["estado"],0);
+            body["documento"], body["correo"], body["rol"], body["telefono"], body["estado"], 0);
 
         //encripta contraseña
         let pass = usuario.getPassword();
         let passHash = await usuario.encriptarPassword(pass);
         usuario.setPassword(passHash);
 
-        if(id !== null && id !== undefined && id !== ""){
-            conexion.query('update usuario set ? where id = ?',[usuario,id],(err, data) => {
+        if (documento !== null && documento !== undefined && documento !== "") {
+            conexion.query('update usuarios set ? where numero_documento = ?', [usuario, documento], (err, data) => {
                 if (err) {
                     res.status(500).send(err);
                 } else {
                     res.status(200).send();
                 }
             });
-        }else{
+        } else {
             res.status(400).send();
         }
     }
-    
+
 }
 
 module.exports = UsuarioController;
