@@ -6,8 +6,11 @@ class UsuarioService{
     }
 
     async obtenerUsuarios(){
-        await axios.get('/usuarios');
+        let array = await axios.get('/usuarios');
+        return array;
+       
     }
+    
 }
 export default UsuarioService;
 
