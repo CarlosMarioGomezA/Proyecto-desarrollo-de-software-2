@@ -1,13 +1,127 @@
 <template>
-  <h1>Iniciar sesion</h1>
+  <form id="formulario" class="row g-3" @submit.prevent="login">
+    <div id="cajaLogin">
+      <h1 id="titulo">Iniciar sesion</h1>
+
+      <!--Email-->
+      <div class="col-md-12">
+        <label for="inputEmail" class="form-label">Correo electronico</label>
+        <input
+          v-model="email"
+          type="email"
+          class="form-control"
+          id="inputEmail"
+          placeholder="Ingrese email"
+          required
+        />
+      </div>
+
+      <!--Contraseña-->
+      <div id="password" class="col-md-12">
+        <label for="inputPassword" class="form-label">Contraseña</label>
+        <input
+          v-model="password"
+          type="password"
+          class="form-control"
+          id="inputPassword"
+          placeholder="Ingrese contraseña"
+          required
+        />
+      </div>
+
+      <div id="olvidePass">
+        <router-link to="/recuperar-pass">Olvidé mi contraseña</router-link>
+      </div>
+
+      <div id="Error" v-if="muestraError">
+        Usuario y/o contraseña incorrectas
+      </div>
+
+      <!--Botón-->
+      <div class="col-10">
+        <button id="boton" type="submit" class="btn btn-dark">
+          Iniciar sesión
+        </button>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>
+import UsuarioService from "@/services/LoginService";
 export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      muestraError: false,
+    };
+  },
+  methods: {
+    limpiaCampos() {
+      this.email = "";
+      this.password = "";
+    },
 
-}
+    async login() {
+      let objLogin = {
+        correo: this.email,
+        password: this.password,
+      };
+
+      try {
+        let service = new UsuarioService();
+        await service.iniciarSesion(objLogin);
+      } catch (error) {
+        let response = error.response.data.info;
+        let token;
+        switch(response){
+          case 'Credenciales inválidas':
+            this.muestraError = true;
+            alert('Credenciales inválidas');
+            break;
+
+          case 'Usuario bloqueado':
+            this.muestraError = true;
+            token = error.response.data.token;
+            alert('Usuario bloqueado');
+            localStorage.setItem('token', JSON.stringify(token));
+            break;
+
+          case 'Inicie nuevamente':
+            this.muestraError = true;
+            alert('Inicie nuevamente');
+            break;
+
+        }
+      }
+      
+    },
+  },
+};
 </script>
 
-<style>
-
+<style scoped>
+#cajaLogin {
+  border: 1px solid rgba(35, 38, 44, 0.781);
+  border-radius: 10px;
+  width: 30%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 10%;
+  padding: 20px 50px;
+}
+#password {
+  margin-top: 20px;
+}
+#olvidePass {
+  margin: 10px 10px;
+}
+#boton {
+  margin-top: 20px;
+  margin-left: 50px;
+}
+#Error {
+  color: red;
+}
 </style>
