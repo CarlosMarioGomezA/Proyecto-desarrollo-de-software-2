@@ -13,7 +13,6 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><router-link to="/registrar-usuario"><a class="dropdown-item" href="#">Registrar Usuario</a></router-link></li>
-            <li><router-link to="/actualizar-usuario"><a class="dropdown-item" href="#">Actualizar Usuario</a></router-link></li>
             <li><router-link to="/buscar-usuario"><a class="dropdown-item" href="#">Buscar Usuario</a></router-link></li>
           </ul>
         </li>
