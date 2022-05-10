@@ -215,6 +215,7 @@ data:() => {
             this.usuario.correo = "";
             this.usuario.telefono = "";
             this.usuario.rol = 0;
+            this.confirmarPassword="";
           },
 
           validarContraseñas(){
@@ -226,14 +227,32 @@ data:() => {
             return flag;
           },
 
+          
+
           async enviarDatos(){
             let usuario = this.usuario;
             let service = new UsuarioService();
             if(!this.validarContraseñas()){
-              alert('Las contraseñas no coinciden');
+              alert('Las contraseñas no coinciden')
             }else{
-              await service.crearUsuario(usuario);
-              this.limpiaCampos();
+              try{
+                await service.crearUsuario(usuario);
+                alert('El usuario ha sido creado satisfactoriamente');
+                this.limpiaCampos();
+              }
+              catch(error){
+                let response = error.response.data.info;
+                if(response === 'usuario con correo existente'){
+                  alert('El correo ya se encuentra en la aplicacion');
+                }
+
+                if(response === 'usuario con documento existente'){
+                  alert('El documento digitado ya se encuentra registrado en la aplicacion');
+                }
+                console.log("hola",response);
+                
+              }
+              
             }
           }
         }
