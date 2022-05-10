@@ -1,5 +1,6 @@
 const express = require('express');
 const AuthController = require('../controllers/AuthController');
+const Autenticador = require('../middlewares/Autenticador');
 
 class AuthRouter{
 
@@ -11,7 +12,8 @@ class AuthRouter{
     config(){
         //instance to controller
         const ctrl = new AuthController();
-        this.router.post('/auth',ctrl.login);
+        const auth = new Autenticador();
+        this.router.post('/auth', auth.validaBloqueo, ctrl.login);
     }
 
 }

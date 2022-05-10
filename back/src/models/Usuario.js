@@ -3,11 +3,10 @@ const res = require('express/lib/response');
 
 class Usuario {
 
-    constructor(nombreUsuario, password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono, estado, intentos){
-        this.nombre_usuario = nombreUsuario;
+    constructor(password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono, estado, intentos){
         this.password_usuario = password;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombre;
+        this.apellidos = apellido;
         this.direccion = direccion;
         this.tipo_documento = tipoDocumento;
         this.numero_documento = documento;
