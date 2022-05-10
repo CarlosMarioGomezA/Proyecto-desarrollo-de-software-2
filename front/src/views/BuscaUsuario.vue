@@ -11,8 +11,8 @@
     <button type="submit" class="btn btn-dark">Buscar Usuario</button>
   </form>
 
-  <div class="row mt-2 p-3">
-    <div class="col-lg-11">
+  <div class="row mt-2 m-1 p-3">
+    <div class="col-lg-20">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -22,6 +22,7 @@
             <th>Numero documento</th>
             <th>Correo</th>
             <th>Telefono</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -33,8 +34,8 @@
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.telefono }}</td>
             <td>
-              <button type="button" class="btn btn-primary">Editar</button>
-              <button type="button" class="btn btn-danger">Eliminar</button>
+              <button type="button" class="btn btn-primary" title="Editar"><i class="fa-solid fa-pen"></i></button>
+              <button type="button" class="btn btn-danger" title="Eliminar"><i class="fa-solid fa-circle-xmark"></i></button>
             </td>
           </tr>
         </tbody>
@@ -94,9 +95,9 @@ export default {
 
 <style scoped>
 button {
-  margin: 10px;
+  margin: 5px;
 }
 input {
-  margin-left: 20px;
+  margin-left: 25px;
 }
 </style>
