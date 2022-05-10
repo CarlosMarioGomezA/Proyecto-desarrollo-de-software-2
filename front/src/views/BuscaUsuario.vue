@@ -2,12 +2,17 @@
   <h1>Administración de Usuarios</h1>
   <!--Formulario para buscar por cedula-->
   <form class="formularioBusqueda" @submit.prevent="buscarUsuario">
-    <input class="form-label" v-model="busqueda" type="text" placeholder="Digite la cedula del usuario">
+    <input
+      class="form-label"
+      v-model="busqueda"
+      type="text"
+      placeholder="Digite la cedula del usuario"
+    />
     <button type="submit" class="btn btn-dark">Buscar Usuario</button>
   </form>
 
   <div class="row mt-2 p-3">
-    <div class="col-lg-11 ">
+    <div class="col-lg-11">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -20,18 +25,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(usuario,index) in usuarios" :key="index">
-            <td>{{usuario.nombre}}</td>
-            <td>{{usuario.apellido}}</td>
-            <td>{{usuario.tipo_documento}}</td>
-            <td>{{usuario.numero_documento}}</td>
-            <td>{{usuario.email}}</td>
-            <td>{{usuario.telefono}}</td>
+          <tr v-for="(usuario, index) in usuarios" :key="index">
+            <td>{{ usuario.nombres }}</td>
+            <td>{{ usuario.apellidos }}</td>
+            <td>{{ usuario.tipo_documento }}</td>
+            <td>{{ usuario.numero_documento }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefono }}</td>
             <td>
-              <button type="button" class="btn btn-primary">editar</button>
-              <button type="button" class="btn btn-danger">eliminar</button>
+              <button type="button" class="btn btn-primary">Editar</button>
+              <button type="button" class="btn btn-danger">Eliminar</button>
             </td>
-            
           </tr>
         </tbody>
       </table>
@@ -40,62 +44,59 @@
 </template>
 
 <script>
-import UsuarioService from "@/services/UsuarioService"
+import UsuarioService from "@/services/UsuarioService";
 export default {
-  data:() =>{
-    return{
+  data: () => {
+    return {
       usuarios: [],
-      busqueda:''
-    }
-
+      busqueda: "",
+    };
   },
-  mounted(){
+  mounted() {
     this.getUsuariosBack();
   },
 
-  methods:{
-    
-   async getUsuariosBack(){
+  methods: {
+    async getUsuariosBack() {
       let service = new UsuarioService();
       let response = await service.obtenerUsuarios();
       let arrayPeticion = response.data;
       let usuarioBd = {};
-      for (let i = 0; i< arrayPeticion.length;i++){
+      for (let i = 0; i < arrayPeticion.length; i++) {
         usuarioBd = arrayPeticion[i];
         this.usuarios.push(usuarioBd);
       }
     },
 
-    buscarUsuario(){
-      let busqueda= this.busqueda;
+    buscarUsuario() {
+      let busqueda = this.busqueda;
       let resultadoBusqueda = [];
       let usuario;
       let cedulaUsuario;
-      
-      for (let i=0; i<this.usuarios.length;i++){
-        usuario=this.usuarios[i];
-        cedulaUsuario = usuario.numero_documento;
 
-        if(busqueda === cedulaUsuario){
-          
-          resultadoBusqueda.push(usuario);  
+      if (busqueda !== "") {
+        for (let i = 0; i < this.usuarios.length; i++) {
+          usuario = this.usuarios[i];
+          cedulaUsuario = usuario.numero_documento;
 
+          if (busqueda === cedulaUsuario) {
+            resultadoBusqueda.push(usuario);
+          }
         }
-
+        this.usuarios = resultadoBusqueda;
+      }else{
+        alert('Ingrese numero de documento');
       }
-     this.usuarios = resultadoBusqueda;
-    }
-
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-  button{
-    margin: 10px;
-  }
-  input{
-    margin-left:20px;
-  }
-
+button {
+  margin: 10px;
+}
+input {
+  margin-left: 20px;
+}
 </style>

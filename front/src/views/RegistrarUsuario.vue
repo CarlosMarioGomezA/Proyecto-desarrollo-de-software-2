@@ -93,7 +93,7 @@
         <label for="inputNumeroDocumento" class="form-label">Número de documento</label>
         <input
           v-model="usuario.documento"
-          type="text"
+          type="num"
           class="form-control"
           id="inputNumeroDocumento"
           placeholder="Ej: 102020202"
@@ -121,7 +121,6 @@
           <option selected="true" disabled>Selecciona un cargo</option>
           <option value=1>Gerente</option>
           <option value=2>Coordinador de transporte</option>
-          <option value=3>Conductor</option>
         </select>
       </div>
       
@@ -136,6 +135,18 @@
         </select>
       </div>
 
+      <!--Respuesta 1-->
+      <div class="col-md-4">
+        <label for="inputRespuesta1" class="form-label">Respuesta 1</label>
+        <input
+          v-model="resPregunta1"
+          type="text"
+          class="form-control"
+          id="inputRespuesta1"
+          placeholder="Ingrese respuesta"
+        />
+      </div>
+
       <!-- Pregunta de seguridad #2 -->
       <div class="col-md-4">
         <label for="inputCargo" class="form-label">Pregunta de Seguridad #2</label>
@@ -143,6 +154,21 @@
           <option selected="true" disabled>Selecciona una pregunta</option>
         </select>
       </div>
+
+      
+
+      <!--Respuesta 2-->
+      <div class="col-md-4">
+        <label for="inputRespuesta2" class="form-label">Respuesta 2</label>
+        <input
+          v-model="resPregunta2"
+          type="text"
+          class="form-control"
+          id="inputRespuesta2"
+          placeholder="Ingrese respuesta"
+        />
+      </div>
+      
       
       <!--Botón-->
       <div class="col-10">
@@ -172,27 +198,43 @@ data:() => {
             confirmarPassword: "",
             preguntaSeguridad1:"",
             preguntaSeguridad2:"",
+            resPregunta1:"",
+            resPregunta2:"",
           }
         },
 
         methods: {
 
+          limpiaCampos(){
+            this.usuario.password = "";
+            this.usuario.nombre = "";
+            this.usuario.apellido = "";
+            this.usuario.direccion = "";
+            this.usuario.tipoDocumento = "";
+            this.usuario.documento = "";
+            this.usuario.correo = "";
+            this.usuario.telefono = "";
+            this.usuario.rol = 0;
+          },
+
           validarContraseñas(){
-            let flag = true;
-            if(this.usuario.contraseña === this.confirmarPassword)
-            {
-              flag = false;
+            let flag = false;
+
+            if(this.usuario.password === this.confirmarPassword){
+              flag = true;
             }
             return flag;
           },
 
-         async enviarDatos(){
+          async enviarDatos(){
             let usuario = this.usuario;
             let service = new UsuarioService();
-            if(this.validarContraseñas === false){
+            if(!this.validarContraseñas()){
               alert('Las contraseñas no coinciden');
+            }else{
+              await service.crearUsuario(usuario);
+              this.limpiaCampos();
             }
-            await service.crearUsuario(usuario);
           }
         }
 }
