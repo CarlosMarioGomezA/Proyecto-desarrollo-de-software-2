@@ -71,7 +71,13 @@ export default {
 
       try {
         let service = new UsuarioService();
-        await service.iniciarSesion(objLogin);
+        let res = await service.iniciarSesion(objLogin);
+        let token = res.data.token;
+
+        if (token){
+          localStorage.setItem('token', token);
+          this.$router.push('/inicio-admin');
+        }
       } catch (error) {
         let response = error.response.data.info;
         let token;
@@ -84,8 +90,8 @@ export default {
           case 'Usuario bloqueado':
             this.muestraError = true;
             token = error.response.data.token;
-            alert('Usuario bloqueado');
-            localStorage.setItem('token', JSON.stringify(token));
+            alert('Usuario bloqueado por demasiados intentos');
+            localStorage.setItem('token', token);
             break;
 
           case 'Inicie nuevamente':
@@ -108,7 +114,7 @@ export default {
   width: 30%;
   text-align: center;
   margin: 0 auto;
-  margin-top: 10%;
+  margin-top: 8%;
   padding: 20px 50px;
 }
 #password {
