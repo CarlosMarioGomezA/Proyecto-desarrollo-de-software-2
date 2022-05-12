@@ -16,7 +16,7 @@ class UsuarioRouter {
         this.router.post('/usuarios', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin, auth.validaUsuarioExistente], ctrl.crearUsuario);
         this.router.get('/usuarios', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin], ctrl.obtenerUsuariosActivos);
         this.router.get('/usuarios/:id', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin], ctrl.obtenerUsuario);
-        this.router.put('/usuarios/:id', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin, auth.validaUsuarioExistente], ctrl.actualizarUsuario);
+        this.router.put('/usuarios/:documento', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin, auth.validaCorreoExistente], ctrl.actualizarUsuario);
     }
 
 }

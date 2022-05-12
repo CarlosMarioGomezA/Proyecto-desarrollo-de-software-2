@@ -125,6 +125,26 @@ class Autenticador {
         });
     }
 
+    validaCorreoExistente(req, res, next){
+        let {documento, correo} = req.body;
+        conexion.query('select * from usuarios where email = ?', correo, (err, data) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                if (data[0] !== null && data[0] !== undefined){
+
+                    if (data[0].numero_documento === documento){
+                        next();
+                    }else{
+                        res.status(500).json({info: "correo existente"});
+                    }
+                }else{
+                    next();
+                }
+            }
+        });
+    }
+
 }
 
 module.exports = Autenticador;

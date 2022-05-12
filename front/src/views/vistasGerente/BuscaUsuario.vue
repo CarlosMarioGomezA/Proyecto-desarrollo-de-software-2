@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar />
     <h1>Administración de Usuarios</h1>
     <!--Formulario para buscar por cedula-->
     <form class="formularioBusqueda" @submit.prevent="buscarUsuario">
@@ -56,9 +55,7 @@
 
 <script>
 import UsuarioService from "@/services/UsuarioService";
-import Navbar from "../../components/Navbar.vue";
 export default {
-  components: { Navbar },
   data: () => {
     return {
       usuarios: [],
