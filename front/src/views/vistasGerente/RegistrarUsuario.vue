@@ -12,8 +12,7 @@
           class="form-control"
           id="inputEmail"
           placeholder="Ej: juanito@gmail.com"
-          required
-        />
+          required/>
       </div>
 
       <!--Contraseña-->
@@ -32,8 +31,7 @@
       <!--Confirmar contraseña-->
       <div class="col-md-3">
         <label for="inputPassword2" class="form-label"
-          >Confirmar contraseña</label
-        >
+          >Confirmar contraseña</label>
         <input
           v-model="confirmarPassword"
           type="password"
@@ -69,7 +67,7 @@
         />
       </div>
       <!--Direccion-->
-      <div class="col-3">
+      <div class="col-md-3">
         <label for="inputDireccion" class="form-label">Direccion</label>
         <input
           v-model="usuario.direccion"
@@ -84,14 +82,12 @@
       <!--Tipo De Documento-->
       <div class="col-md-3">
         <label for="inputTipoDocumento" class="form-label"
-          >Tipo de documento</label
-        >
+          >Tipo de documento</label>
         <select
           v-model="usuario.tipoDocumento"
           id="inputTipoDocumento"
           class="form-select"
-          required
-        >
+          required>
           <option disabled selected>Selecciona tipo de documento</option>
           <option>C.C</option>
           <option>Cedula de extranjería</option>
@@ -102,9 +98,7 @@
 
       <!--# de Documento-->
       <div class="col-md-6">
-        <label for="inputNumeroDocumento" class="form-label"
-          >Número de documento</label
-        >
+        <label for="inputNumeroDocumento" class="form-label">Número de documento</label>
         <input
           v-model="usuario.documento"
           type="num"
@@ -135,8 +129,7 @@
           class="form-select"
           id="inputCargo"
           v-model="usuario.rol"
-          required
-        >
+          required>
           <option selected="true" disabled>Selecciona un cargo</option>
           <option value="1">Gerente</option>
           <option value="2">Coordinador de transporte</option>
@@ -151,8 +144,7 @@
         <select
           class="form-select"
           id="inputPregunta1"
-          v-model="preguntaSeguridad1"
-        >
+          v-model="preguntaSeguridad1">
           <option selected="true" disabled>Selecciona una pregunta</option>
         </select>
       </div>
