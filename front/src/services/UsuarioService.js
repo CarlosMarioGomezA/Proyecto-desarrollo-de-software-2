@@ -13,7 +13,7 @@ class UsuarioService{
     }
 
     async ActualizarUsuario(usuario){
-        let array = await axios.put('/usuarios/:' + usuario.documento, usuario);
+        let array = await axios.put('/usuarios/' + usuario.documento, usuario);
         return array;
      }
     

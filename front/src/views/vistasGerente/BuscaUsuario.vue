@@ -31,7 +31,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(usuario, index) in usuarios" :key="index"> <!--Ciclo que recorre el arreglo de usuarios que vienen de las B.D-->
+            <tr v-for="(usuario, index) in usuarios" :key="index">
+              <!--Ciclo que recorre el arreglo de usuarios que vienen de las B.D-->
               <td>{{ usuario.nombres }}</td>
               <td>{{ usuario.apellidos }}</td>
               <td>{{ usuario.tipo_documento }}</td>
@@ -41,7 +42,14 @@
               <td v-if="usuario.id_estado === 1">Activo</td>
               <td v-if="usuario.id_estado === 2">Bloqueado</td>
               <td>
-                <button type="button" class="btn btn-success" title="Editar" @click="abrirModalEditar(usuario)" data-bs-toggle="modal" data-bs-target="#modalEditar">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  title="Editar"
+                  @click="abrirModalEditar(usuario)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalEditar"
+                >
                   <i class="fa-solid fa-pen"></i>
                 </button>
                 <button type="button" class="btn btn-danger" title="Eliminar">
@@ -58,129 +66,168 @@
       Launch static backdrop modal
     </button> -->
     <!-- Modal Editar-Usuario -->
-    <div class="modal fade" id="modalEditar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="modalEditar"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog p-20">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Editar Usuario</h5> <!--Titulo-->
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!--Boton superior para cerrar-->
+            <h5 class="modal-title" id="staticBackdropLabel">Editar Usuario</h5>
+            <!--Titulo-->
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+            <!--Boton superior para cerrar-->
           </div>
-        <form>
-          <div class="modal-body"> <!--Cuerpo del modal-->
-            <div class="col-md-10">
-              <label for="inputEmail" class="form-label">Correo electronico</label>
-              <input
-                v-model="usuarioEditar.correo"
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                placeholder="Ej: juanito@gmail.com"
-                required/>
-            </div>
+          <form>
+            <div class="modal-body">
+              <!--Cuerpo del modal-->
+              <div class="col-md-10">
+                <label for="inputEmail" class="form-label"
+                  >Correo electronico</label
+                >
+                <input
+                  v-model="usuarioEditar.correo"
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Ej: juanito@gmail.com"
+                  required
+                />
+              </div>
 
-            <!--Contraseña-->
-            <div class="col-md-10">
-              <label for="inputPassword" class="form-label">Contraseña</label>
-              <input
-                v-model="usuarioEditar.password"
-                type="password"
-                class="form-control"
-                id="inputPassword"
-                placeholder="*************"
-                required/>
-            </div>
+              <!--Contraseña-->
+              <div class="col-md-10">
+                <label for="inputPassword" class="form-label">Contraseña</label>
+                <input
+                  v-model="usuarioEditar.password"
+                  type="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="*************"
+                  required
+                />
+              </div>
 
-            <!--Confirmar contraseña-->
-            <div class="col-md-10">
-              <label for="inputPassword2" class="form-label"
-                >Confirmar contraseña</label>
-              <input
-                v-model="confirmarPassword"
-                type="password"
-                class="form-control"
-                id="inputPassword2"
-                placeholder="***********"
-                required/>
-            </div>
-            <!--Nombres-->
-            <div class="col-md-10">
-              <label for="inputNombre" class="form-label">Nombres</label>
-              <input
-                v-model="usuarioEditar.nombre"
-                type="text"
-                class="form-control"
-                id="inputNombre"
-                placeholder="Ej: Sebastián"
-                required/>
-            </div>
+              <!--Confirmar contraseña-->
+              <div class="col-md-10">
+                <label for="inputPassword2" class="form-label"
+                  >Confirmar contraseña</label
+                >
+                <input
+                  v-model="confirmarPassword"
+                  type="password"
+                  class="form-control"
+                  id="inputPassword2"
+                  placeholder="***********"
+                  required
+                />
+              </div>
+              <!--Nombres-->
+              <div class="col-md-10">
+                <label for="inputNombre" class="form-label">Nombres</label>
+                <input
+                  v-model="usuarioEditar.nombre"
+                  type="text"
+                  class="form-control"
+                  id="inputNombre"
+                  placeholder="Ej: Sebastián"
+                  required
+                />
+              </div>
 
-            <!--Apellidos-->
-            <div class="col-md-10">
-              <label for="inputApellido" class="form-label">Apellidos</label>
-              <input
-                v-model="usuarioEditar.apellido"
-                type="text"
-                class="form-control"
-                id="inputApellido"
-                placeholder="Ej: González"
-                required/>
-            </div>
-            <!--Direccion-->
-            <div class="col-md-10">
-              <label for="inputDireccion" class="form-label">Direccion</label>
-              <input
-                v-model="usuarioEditar.direccion"
-                type="text"
-                class="form-control"
-                id="inputDireccion"
-                placeholder="Ej: cll13 #03-33"
-                required/>
-            </div>
+              <!--Apellidos-->
+              <div class="col-md-10">
+                <label for="inputApellido" class="form-label">Apellidos</label>
+                <input
+                  v-model="usuarioEditar.apellido"
+                  type="text"
+                  class="form-control"
+                  id="inputApellido"
+                  placeholder="Ej: González"
+                  required
+                />
+              </div>
+              <!--Direccion-->
+              <div class="col-md-10">
+                <label for="inputDireccion" class="form-label">Direccion</label>
+                <input
+                  v-model="usuarioEditar.direccion"
+                  type="text"
+                  class="form-control"
+                  id="inputDireccion"
+                  placeholder="Ej: cll13 #03-33"
+                  required
+                />
+              </div>
 
+              <!--Telefono-->
+              <div class="col-md-10">
+                <label for="inputTelefono" class="form-label">Telefono</label>
+                <input
+                  v-model="usuarioEditar.telefono"
+                  type="tel"
+                  class="form-control"
+                  id="inputTelefono"
+                  placeholder="Ej: 9900281"
+                  required
+                />
+              </div>
 
-            <!--Telefono-->
-            <div class="col-md-10">
-              <label for="inputTelefono" class="form-label">Telefono</label>
-              <input
-                v-model="usuarioEditar.telefono"
-                type="tel"
-                class="form-control"
-                id="inputTelefono"
-                placeholder="Ej: 9900281"
-                required/>
+              <!--Cargo-->
+              <div class="col-md-10">
+                <label for="inputCargo" class="form-label">Cargo</label>
+                <select
+                  v-model="usuarioEditar.rol"
+                  class="form-select"
+                  id="inputCargo"
+                  required
+                >
+                  <option selected="true" disabled>Selecciona un cargo</option>
+                  <option value="1">Gerente</option>
+                  <option value="2">Coordinador de transporte</option>
+                </select>
+              </div>
+              <!-- Estado -->
+              <div class="col-md-10">
+                <label for="inputEstado" class="form-label">Estado</label>
+                <select
+                  v-model="usuarioEditar.estado"
+                  class="form-select"
+                  id="inputEstado"
+                  required
+                >
+                  <option selected="true" disabled>Selecciona un cargo</option>
+                  <option value="1">Activo</option>
+                  <option value="2">Bloqueado</option>
+                </select>
+              </div>
             </div>
-
-            <!--Cargo-->
-            <div class="col-md-10">
-              <label for="inputCargo" class="form-label">Cargo</label>
-              <select
-                v-model="usuarioEditar.rol"
-                class="form-select"
-                id="inputCargo"
-                required>
-                <option selected="true" disabled>Selecciona un cargo</option>
-                <option value="1">Gerente</option>
-                <option value="2">Coordinador de transporte</option>
-              </select>
-            </div>
-            <!-- Estado -->
-            <div class="col-md-10">
-              <label for="inputEstado" class="form-label">Estado</label>
-              <select
-                v-model="usuarioEditar.estado"
-                class="form-select"
-                id="inputEstado"
-                required>
-                <option selected="true" disabled>Selecciona un cargo</option>
-                <option value="1">Activo</option>
-                <option value="2">Bloqueado</option>
-              </select>
-            </div>             
-          </div>
-        </form>
+          </form>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" @click="editarUsuario" >Actualizar</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              @click="editarUsuario"
+            >
+              Actualizar
+            </button>
           </div>
         </div>
       </div>
@@ -197,21 +244,20 @@ export default {
       busqueda: "",
 
       usuarioEditar: {
-        password:"",
+        password: "",
         nombre: "",
         apellido: "",
-        direccion:"",
+        direccion: "",
         tipoDocumento: "",
         documento: "",
-        correo:"",
-        rol:0,
-        telefono:"",
-        estado:0
+        correo: "",
+        rol: 0,
+        telefono: "",
+        estado: 0,
       },
       //Validaciones
-      confirmarPassword:"",
-      btnActualizar:false
-
+      confirmarPassword: "",
+      btnActualizar: false,
     };
   },
   mounted() {
@@ -220,8 +266,7 @@ export default {
   },
 
   methods: {
-
-     validarContraseñas() {
+    validarContraseñas() {
       let flag = false;
 
       if (this.usuarioEditar.password === this.confirmarPassword) {
@@ -230,14 +275,21 @@ export default {
       return flag;
     },
 
-    verificaCamposVacios(){
+    verificaCamposVacios() {
       let resultado = true;
-      if(this.usuarioEditar.nombre === ""|| this.usuarioEditar.apellido === "" 
-      ||this.usuarioEditar.tipoDocumento === "" || this.usuarioEditar.documento === ""
-      ||this.usuarioEditar.direccion=== ""||this.usuarioEditar.telefono === ""
-      ||this.usuarioEditar.correo === ""||this.usuarioEditar.rol === 0 
-      || this.usuarioEditar.estado === 0 || this.usuarioEditar.password === ""
-      ||this.confirmarPassword === ""){
+      if (
+        this.usuarioEditar.nombre === "" ||
+        this.usuarioEditar.apellido === "" ||
+        this.usuarioEditar.tipoDocumento === "" ||
+        this.usuarioEditar.documento === "" ||
+        this.usuarioEditar.direccion === "" ||
+        this.usuarioEditar.telefono === "" ||
+        this.usuarioEditar.correo === "" ||
+        this.usuarioEditar.rol === 0 ||
+        this.usuarioEditar.estado === 0 ||
+        this.usuarioEditar.password === "" ||
+        this.confirmarPassword === ""
+      ) {
         resultado = false;
       }
       return resultado;
@@ -254,9 +306,10 @@ export default {
       }
     },
 
-    abrirModalEditar(datos){
+    abrirModalEditar(datos) {
       this.usuarioEditar = {
-        password:"",
+        password: "",
+        tipoDocumento: datos.tipo_documento,
         nombre: datos.nombres,
         apellido: datos.apellidos,
         direccion: datos.direccion,
@@ -264,28 +317,27 @@ export default {
         correo: datos.email,
         rol: datos.id_rol,
         telefono: datos.telefono,
-        estado: datos.id_estado
-      }
+        estado: datos.id_estado,
+      };
     },
 
-   async editarUsuario(){
+    async editarUsuario() {
       let service = new UsuarioService();
       if (!this.validarContraseñas()) {
         alert("Las contraseñas no coinciden");
-      }else{
-        if(!this.verificaCamposVacios()){
+      } else {
+        if (!this.verificaCamposVacios()) {
           alert("No se permiten los campos en blanco");
-        }
-        else{
+        } else {
           try {
-           await service.ActualizarUsuario(this.usuarioEditar);
-           // alert('El Usuario ha sido actualizado satisfactoriamente');
+            let usuario = this.usuarioEditar;
+            await service.ActualizarUsuario(usuario);
+            alert("El Usuario ha sido actualizado satisfactoriamente");
           } catch (error) {
             console.log(error);
           }
         }
       }
-        
     },
 
     buscarUsuario() {
