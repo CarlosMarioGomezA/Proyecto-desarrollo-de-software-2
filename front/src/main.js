@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from '@/services/axios'
+import store from "./store";
 
 const tomaToken = () => {
     let token = localStorage.getItem('token');
@@ -12,4 +13,4 @@ const tomaToken = () => {
 
 tomaToken();
 
-createApp(App).use(router, axios).mount('#app')
+createApp(App).use(router, store, axios).mount('#app')
