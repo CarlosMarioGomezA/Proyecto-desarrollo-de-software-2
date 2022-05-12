@@ -85,6 +85,7 @@ export default {
 
         if (token) {
           localStorage.setItem("token", token);
+          this.$store.dispatch('user', usuario);
           this.redireccionaXrol(usuario);
 
         }

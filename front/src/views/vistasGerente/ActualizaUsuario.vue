@@ -171,8 +171,6 @@ data:() => {
             preguntaSeguridad2:"",
           }
         },
-<<<<<<< HEAD:front/src/views/vistasGerente/ActualizaUsuario.vue
-=======
 
         methods: {
 
@@ -200,34 +198,33 @@ data:() => {
 
           
 
-          async enviarDatos(){
-            let usuario = this.usuario;
-            let service = new UsuarioService();
-            if(!this.validarContraseñas()){
-              alert('Las contraseñas no coinciden')
-            }else{
-              try{
-                await service.crearUsuario(usuario);
-                alert('El usuario ha sido creado satisfactoriamente');
-                this.limpiaCampos();
-              }
-              catch(error){
-                let response = error.response.data.info;
-                if(response === 'usuario con correo existente'){
-                  alert('El correo ya se encuentra en la aplicacion');
-                }
+          // async enviarDatos(){
+          //   let usuario = this.usuario;
+          //   let service = new UsuarioService();
+          //   if(!this.validarContraseñas()){
+          //     alert('Las contraseñas no coinciden')
+          //   }else{
+          //     try{
+          //       await service.crearUsuario(usuario);
+          //       alert('El usuario ha sido creado satisfactoriamente');
+          //       this.limpiaCampos();
+          //     }
+          //     catch(error){
+          //       let response = error.response.data.info;
+          //       if(response === 'usuario con correo existente'){
+          //         alert('El correo ya se encuentra en la aplicacion');
+          //       }
 
-                if(response === 'usuario con documento existente'){
-                  alert('El documento digitado ya se encuentra registrado en la aplicacion');
-                }
-                console.log("hola",response);
+          //       if(response === 'usuario con documento existente'){
+          //         alert('El documento digitado ya se encuentra registrado en la aplicacion');
+          //       }
+          //       console.log("hola",response);
                 
-              }
+          //     }
               
-            }
-          }
+          //   }
+          // }
         }
->>>>>>> main:front/src/views/RegistrarUsuario.vue
 }
 </script>
 
