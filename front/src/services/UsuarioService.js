@@ -2,7 +2,8 @@ import axios from "@/services/axios";
 class UsuarioService{
 
     async crearUsuario(usuario){
-        await axios.post('/usuarios', usuario);
+       let array = await axios.post('/usuarios', usuario);
+       return array;
     }
 
     async obtenerUsuarios(){

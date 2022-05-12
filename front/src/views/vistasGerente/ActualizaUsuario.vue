@@ -171,6 +171,63 @@ data:() => {
             preguntaSeguridad2:"",
           }
         },
+<<<<<<< HEAD:front/src/views/vistasGerente/ActualizaUsuario.vue
+=======
+
+        methods: {
+
+          limpiaCampos(){
+            this.usuario.password = "";
+            this.usuario.nombre = "";
+            this.usuario.apellido = "";
+            this.usuario.direccion = "";
+            this.usuario.tipoDocumento = "";
+            this.usuario.documento = "";
+            this.usuario.correo = "";
+            this.usuario.telefono = "";
+            this.usuario.rol = 0;
+            this.confirmarPassword="";
+          },
+
+          validarContraseñas(){
+            let flag = false;
+
+            if(this.usuario.password === this.confirmarPassword){
+              flag = true;
+            }
+            return flag;
+          },
+
+          
+
+          async enviarDatos(){
+            let usuario = this.usuario;
+            let service = new UsuarioService();
+            if(!this.validarContraseñas()){
+              alert('Las contraseñas no coinciden')
+            }else{
+              try{
+                await service.crearUsuario(usuario);
+                alert('El usuario ha sido creado satisfactoriamente');
+                this.limpiaCampos();
+              }
+              catch(error){
+                let response = error.response.data.info;
+                if(response === 'usuario con correo existente'){
+                  alert('El correo ya se encuentra en la aplicacion');
+                }
+
+                if(response === 'usuario con documento existente'){
+                  alert('El documento digitado ya se encuentra registrado en la aplicacion');
+                }
+                console.log("hola",response);
+                
+              }
+              
+            }
+          }
+        }
+>>>>>>> main:front/src/views/RegistrarUsuario.vue
 }
 </script>
 
