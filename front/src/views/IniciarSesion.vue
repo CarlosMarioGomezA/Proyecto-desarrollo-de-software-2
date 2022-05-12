@@ -1,6 +1,6 @@
 <template>
-  <form id="formulario" class="row g-3" @submit.prevent="login">
-    <div id="cajaLogin">
+  <div id="cajaLogin">
+    <form id="formulario" class="row g-3" @submit.prevent="login">
       <h1 id="titulo">Iniciar sesion</h1>
 
       <!--Email-->
@@ -43,8 +43,8 @@
           Iniciar sesión
         </button>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -63,6 +63,14 @@ export default {
       this.password = "";
     },
 
+    redireccionaXrol(usuario) {
+      if (usuario.id_rol === 1) {
+        this.$router.push("/inicio-admin");
+      }else{
+        this.$router.push("/inicio-coordinador");
+      }
+    },
+
     async login() {
       let objLogin = {
         correo: this.email,
@@ -73,35 +81,35 @@ export default {
         let service = new UsuarioService();
         let res = await service.iniciarSesion(objLogin);
         let token = res.data.token;
+        let usuario = res.data.usuario;
 
-        if (token){
-          localStorage.setItem('token', token);
-          this.$router.push('/inicio-admin');
+        if (token) {
+          localStorage.setItem("token", token);
+          this.redireccionaXrol(usuario);
+
         }
       } catch (error) {
         let response = error.response.data.info;
         let token;
-        switch(response){
-          case 'Credenciales inválidas':
+        switch (response) {
+          case "Credenciales inválidas":
             this.muestraError = true;
-            alert('Credenciales inválidas');
+            alert("Credenciales inválidas");
             break;
 
-          case 'Usuario bloqueado':
+          case "Usuario bloqueado":
             this.muestraError = true;
             token = error.response.data.token;
-            alert('Usuario bloqueado por demasiados intentos');
-            localStorage.setItem('token', token);
+            alert("Usuario bloqueado por demasiados intentos");
+            localStorage.setItem("token", token);
             break;
 
-          case 'Inicie nuevamente':
+          case "Inicie nuevamente":
             this.muestraError = true;
-            alert('Inicie nuevamente');
+            alert("Inicie nuevamente");
             break;
-
         }
       }
-      
     },
   },
 };

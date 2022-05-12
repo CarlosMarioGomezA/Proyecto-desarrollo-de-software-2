@@ -23,7 +23,8 @@ class AuthController {
 
                         let payload = { id: data[0].id };
                         let token = jwt.sign(payload, process.env.PRIVATE_KEY);
-                        res.status(200).json({ token });
+                        usu = data[0];
+                        res.status(200).json({ token, usuario: usu });
                     } else {
                         conexion.query('update usuarios set intentos = intentos + 1 where email = ?', correo)
                         res.status(401).json({ info: 'Credenciales inválidas' });

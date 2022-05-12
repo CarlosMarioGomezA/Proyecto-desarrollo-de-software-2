@@ -14,6 +14,11 @@ const routes = [
     component: () => import('@/views/vistasGerente/Home.vue')
   },
   {
+    path: '/inicio-coordinador',
+    name: 'InicioCoordinador',
+    component: () => import('@/views/vistasCoordinador/Home.vue')
+  },
+  {
     path: '/registrar-usuario',
     name: 'RegistarUsuario',
     component: () => import('@/views/vistasGerente/RegistrarUsuario.vue')

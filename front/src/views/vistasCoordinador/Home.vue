@@ -1,16 +1,15 @@
 <template>
   <div>
-    <navbar />
+    <navbar/>
     <h1>Inicio</h1>
     <img src="@/assets/mantenimiento.jpg" alt="Estamos en mantenimiento" />
   </div>
 </template>
 
 <script>
-import Navbar from "../../components/Navbar.vue";
+import Navbar from '../../components/Navbar.vue';
 export default {
-  components: { Navbar },
-};
+  components: { Navbar },};
 </script>
 
 <style scoped>
