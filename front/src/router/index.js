@@ -9,19 +9,29 @@ const routes = [
     component: () => import('@/views/IniciarSesion.vue'),
   },
   {
+    path: '/inicio-admin',
+    name: 'InicioAdmin',
+    component: () => import('@/views/vistasGerente/Home.vue')
+  },
+  {
+    path: '/inicio-coordinador',
+    name: 'InicioCoordinador',
+    component: () => import('@/views/vistasCoordinador/Home.vue')
+  },
+  {
     path: '/registrar-usuario',
     name: 'RegistarUsuario',
-    component: () => import('@/views/RegistrarUsuario.vue')
+    component: () => import('@/views/vistasGerente/RegistrarUsuario.vue')
   },
   {
     path: '/buscar-usuario',
     name: 'BuscarUsuario',
-    component: () => import('@/views/BuscaUsuario.vue')
+    component: () => import('@/views/vistasGerente/BuscaUsuario.vue')
   },
   {
     path: '/actualizar-usuario',
     name: 'ActualizarUsuario',
-    component: () => import('@/views/ActualizaUsuario.vue')
+    component: () => import('@/views/vistasGerente/ActualizaUsuario.vue')
   },
   {
     path: '/recuperar-pass',
