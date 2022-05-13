@@ -1,17 +1,21 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" v-if="muestra">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
   <div class="container-fluid">
-    <router-link class="navbar-brand" to="/inicio-admin">Pioneros</router-link>
+    <router-link v-if="getUsuario.id_rol===1" class="navbar-brand" to="/inicio-admin">Pioneros</router-link>
+    <router-link v-if="getUsuario.id_rol===2" class="navbar-brand" to="/inicio-coordinador">Pioneros</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
+        <li v-if="getUsuario.id_rol===1" class="nav-item dropdown">
             <router-link to="/inicio-admin" class="nav-link">Inicio</router-link>
         </li>
+        <li v-if="getUsuario.id_rol===2" class="nav-item dropdown">
+            <router-link to="/inicio-coordinador" class="nav-link">Inicio</router-link>
+        </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a v-if="getUsuario.id_rol===1" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Gestión de Usuarios
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -20,7 +24,7 @@
           </ul>
         </li>
         <li id="logout" class="nav-item dropdown">
-            <a href="javascript:void(0)" @click="cerrarSesion" class="nav-link">Cerrar sesión</a>
+            <a @click="cerrarSesion" href="/" class="nav-link">Cerrar sesión</a>
         </li>
       </ul>
     </div>
@@ -29,31 +33,24 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions} from "vuex";
 
 export default{
   data(){
     return {
-      muestra: false
+
     }
   },
-  mounted(){
-    // this.pintaNavbar();
-  },
   methods: {
-    pintaNavbar(){
-      if(this.usuario){
-        this.muestra = true
-      }
-    },
+    ...mapActions(['setUsuario']),
+
     cerrarSesion(){
       localStorage.removeItem('token');
-      this.$store.dispatch('user', null);
-      this.$router.push('/');
+      this.setUsuario(null);
     }
   },
   computed: {
-    ...mapGetters(['usuario'])
+    ...mapGetters(['getUsuario','getToken'])
   }
 }
 

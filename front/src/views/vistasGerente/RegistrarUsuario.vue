@@ -1,6 +1,5 @@
 <template>
   <div>
-    <navbar />
     <h1>Registrar usuario</h1>
     <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
       <!--Email-->
@@ -171,9 +170,7 @@
 
 <script>
 import UsuarioService from "@/services/UsuarioService";
-import Navbar from "../../components/Navbar.vue";
 export default {
-  components: { Navbar },
   data: () => {
     return {
       usuario: {
