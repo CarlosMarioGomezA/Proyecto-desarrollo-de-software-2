@@ -1,7 +1,16 @@
 <template>
   <div>
     <navbar />
-    <h1>Registrar usuario</h1>
+    <div class="contenedor">
+      <h1>Registrar usuario</h1>
+    </div>
+    <div class="contenedorLogo">
+      <img
+        id="logo"
+        src="@/assets/logoPioneros600x338.png" 
+        alt="logoEmpresarial"
+        >
+    </div>
     <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
       <!--Email-->
       <div class="col-md-6">
@@ -162,14 +171,15 @@
       </div>
 
       <!--Botón-->
-      <div class="col-10">
-        <button type="submit" class="btn btn-dark">Guardar Información</button>
+      <div class="contenedor">
+        <button type="submit" class="btn btn-primary btn-lg">Registrar Usuario</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
+window.document.title = "Registrar Usuarios";
 import UsuarioService from "@/services/UsuarioService";
 import Navbar from "../../components/Navbar.vue";
 export default {
@@ -249,4 +259,27 @@ export default {
   margin: 50px;
   margin-top: 0%;
 }
+
+.contenedor{
+  text-align: center;
+  margin-top: calc(1em + 1vw);
+}
+
+#logo{
+  position: relative;
+  opacity: 20%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contenedorLogo{
+  /*background-color: aqua;*/
+  text-align: center;
+  z-index: -1;
+  width: 100%;
+  position: fixed;
+}
+
+
 </style>

@@ -189,6 +189,7 @@
 </template>
 
 <script>
+window.document.title = "Buscar Usuario";
 import UsuarioService from "@/services/UsuarioService";
 export default {
   data: () => {
