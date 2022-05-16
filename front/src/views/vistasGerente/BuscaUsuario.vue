@@ -312,7 +312,6 @@ export default {
         password: "",
         tipoDocumento: datos.tipo_documento,
         nombre: datos.nombres,
-        tipoDocumento: datos.tipo_documento,
         apellido: datos.apellidos,
         direccion: datos.direccion,
         documento: datos.numero_documento,
