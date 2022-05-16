@@ -17,6 +17,7 @@ class UsuarioService {
         return array;
     }
 
+
     async obtenerUsuarios() {
         let array = await axios.get(this.baseURL + 'usuarios', {headers: this.tomaToken()});
         return array;

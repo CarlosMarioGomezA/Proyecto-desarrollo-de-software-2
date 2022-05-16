@@ -52,7 +52,7 @@
                 >
                   <i class="fa-solid fa-pen"></i>
                 </button>
-                <button type="button" class="btn btn-danger" title="Eliminar">
+                <button type="button" class="btn btn-danger" title="Eliminar" @click="eliminarUsuario(usuario)">
                   <i class="fa-solid fa-circle-xmark"></i>
                 </button>
               </td>
@@ -311,6 +311,7 @@ export default {
         password: "",
         tipoDocumento: datos.tipo_documento,
         nombre: datos.nombres,
+        tipoDocumento: datos.tipo_documento,
         apellido: datos.apellidos,
         direccion: datos.direccion,
         documento: datos.numero_documento,
@@ -331,12 +332,41 @@ export default {
         } else {
           try {
             let usuario = this.usuarioEditar;
-            await service.ActualizarUsuario(usuario);
-            alert("El Usuario ha sido actualizado satisfactoriamente");
+
+           await service.ActualizarUsuario(usuario);
+           alert('El Usuario ha sido actualizado satisfactoriamente');
+           location.reload();
+            this.$router.go(0);
+
           } catch (error) {
             console.log(error);
           }
         }
+      }
+    },
+
+   async eliminarUsuario(datos){
+     let service = new UsuarioService();
+      this.usuarioEditar = {
+        password: datos.password_usuario,
+        nombre: datos.nombres,
+        tipoDocumento: datos.tipo_documento,
+        apellido: datos.apellidos,
+        direccion: datos.direccion,
+        documento: datos.numero_documento,
+        correo: datos.email,
+        rol: datos.id_rol,
+        telefono: datos.telefono,
+        estado: 3,
+      }
+      try {
+         let usuario = this.usuarioEditar;
+          await service.ActualizarUsuario(usuario);
+          alert('Usuario Eliminado satisfactoriamente');
+          location.reload();
+          this.$router.go(0);
+      } catch (error) {
+        console.log(error);
       }
     },
 
