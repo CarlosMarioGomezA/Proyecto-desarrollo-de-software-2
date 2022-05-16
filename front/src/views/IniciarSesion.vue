@@ -1,53 +1,68 @@
 <template>
-  <div id="cajaLogin">
-    <form id="formulario" class="row g-3" @submit.prevent="login">
-      <h1 id="titulo">Iniciar sesion</h1>
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img
+            id="imagenLogoEmpresarial"
+            src="@/assets/logoPioneros600x338.png" 
+            class="img-fluid" 
+            alt="Sample image"
+          >
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="inputEmail">Correo eletronico</label>
+              <input 
+                v-model="email"
+                id="inputEmail" 
+                type="email" 
+                class="form-control form-control-lg" 
+                placeholder="Ingrese su direccion de correo eletronico" 
+                required
+              />
+            </div>
 
-      <!--Email-->
-      <div class="col-md-12">
-        <label for="inputEmail" class="form-label">Correo electronico</label>
-        <input
-          v-model="email"
-          type="email"
-          class="form-control"
-          id="inputEmail"
-          placeholder="Ingrese email"
-          required
-        />
-      </div>
+            <div class="form-outline mb-3">
+              <label class="form-label" for="inputPassword">Contraseña</label>
+              <input 
+                v-model="password"
+                id="inputPassword" 
+                type="password" 
+                class="form-control form-control-lg" 
+                placeholder="Ingrese la contraseña de usuario" 
+                required
+              />
+            </div>
 
-      <!--Contraseña-->
-      <div id="password" class="col-md-12">
-        <label for="inputPassword" class="form-label">Contraseña</label>
-        <input
-          v-model="password"
-          type="password"
-          class="form-control"
-          id="inputPassword"
-          placeholder="Ingrese contraseña"
-          required
-        />
-      </div>
+            <div class="d-flex justify-content-between align-items-center">
+              <router-link to="/recuperar-pass">Olvidé mi contraseña</router-link>
+            </div>
 
-      <div id="olvidePass">
-        <router-link to="/recuperar-pass">Olvidé mi contraseña</router-link>
-      </div>
+            <div id="Error" v-if="muestraError">
+              Usuario y/o contraseña incorrectas
+            </div>
 
-      <div id="Error" v-if="muestraError">
-        Usuario y/o contraseña incorrectas
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button 
+                id="boton"
+                type="submit" 
+                class="btn btn-primary btn-lg" 
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                Iniciar sesion
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+    </div>
+  </section> 
 
-      <!--Botón-->
-      <div class="col-10">
-        <button id="boton" type="submit" class="btn btn-dark">
-          Iniciar sesión
-        </button>
-      </div>
-    </form>
-  </div>
 </template>
 
 <script>
+window.document.title = "Iniciar Sesion";
 import { mapActions } from "vuex";
 import UsuarioService from "@/services/LoginService";
 export default {
@@ -115,31 +130,30 @@ export default {
         }
       }
     },
-  },
+  }
 };
+
 </script>
 
 <style scoped>
-#cajaLogin {
-  border: 1px solid rgba(35, 38, 44, 0.781);
-  border-radius: 10px;
-  width: 30%;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 8%;
-  padding: 20px 50px;
-}
-#password {
-  margin-top: 20px;
-}
-#olvidePass {
-  margin: 10px 10px;
-}
-#boton {
-  margin-top: 20px;
-  margin-left: 50px;
-}
-#Error {
-  color: red;
-}
+  #Error {
+    color: red;
+    font-weight: 200;
+  }
+  .divider:after, 
+  .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+  }
+  .h-custom {
+    height: calc(100% - 73px);
+  }
+  @media (max-width: 450px) {
+    .h-custom {
+      height: 100%;
+    }
+  }
+
 </style>
