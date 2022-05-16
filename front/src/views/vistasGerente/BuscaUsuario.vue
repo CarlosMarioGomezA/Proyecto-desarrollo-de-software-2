@@ -52,7 +52,12 @@
                 >
                   <i class="fa-solid fa-pen"></i>
                 </button>
-                <button type="button" class="btn btn-danger" title="Eliminar" @click="eliminarUsuario(usuario)">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  title="Eliminar"
+                  @click="eliminarUsuario(usuario)"
+                >
                   <i class="fa-solid fa-circle-xmark"></i>
                 </button>
               </td>
@@ -330,23 +335,17 @@ export default {
         if (!this.verificaCamposVacios()) {
           alert("No se permiten los campos en blanco");
         } else {
-          try {
-            let usuario = this.usuarioEditar;
-
-           await service.ActualizarUsuario(usuario);
-           alert('El Usuario ha sido actualizado satisfactoriamente');
-           location.reload();
-            this.$router.go(0);
-
-          } catch (error) {
-            console.log(error);
-          }
+          let usuario = this.usuarioEditar;
+          await service.ActualizarUsuario(usuario);
+          alert("El Usuario ha sido actualizado satisfactoriamente");
+          this.usuarios = [];
+          this.getUsuariosBack();
         }
       }
     },
 
-   async eliminarUsuario(datos){
-     let service = new UsuarioService();
+    async eliminarUsuario(datos) {
+      let service = new UsuarioService();
       this.usuarioEditar = {
         password: datos.password_usuario,
         nombre: datos.nombres,
@@ -358,16 +357,12 @@ export default {
         rol: datos.id_rol,
         telefono: datos.telefono,
         estado: 3,
-      }
-      try {
-         let usuario = this.usuarioEditar;
-          await service.ActualizarUsuario(usuario);
-          alert('Usuario Eliminado satisfactoriamente');
-          location.reload();
-          this.$router.go(0);
-      } catch (error) {
-        console.log(error);
-      }
+      };
+      let usuario = this.usuarioEditar;
+      await service.ActualizarUsuario(usuario);
+      alert("Usuario eliminado satisfactoriamente");
+      this.usuarios = [];
+      this.getUsuariosBack();
     },
 
     buscarUsuario() {

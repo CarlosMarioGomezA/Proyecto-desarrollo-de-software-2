@@ -11,15 +11,15 @@
           >
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form @submit.prevent="login">
             <div class="form-outline mb-4">
-              <label class="form-label" for="inputEmail">Correo eletronico</label>
+              <label class="form-label" for="inputEmail">Correo electrónico</label>
               <input 
                 v-model="email"
                 id="inputEmail" 
                 type="email" 
                 class="form-control form-control-lg" 
-                placeholder="Ingrese su direccion de correo eletronico" 
+                placeholder="Ingrese su direccion de correo electrónico" 
                 required
               />
             </div>
@@ -121,6 +121,7 @@ export default {
             token = error.response.data.token;
             alert("Usuario bloqueado por demasiados intentos");
             localStorage.setItem("token", token);
+            this.limpiaCampos();
             break;
 
           case "Inicie nuevamente":

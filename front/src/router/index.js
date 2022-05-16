@@ -29,11 +29,6 @@ const routes = [
     component: () => import('@/views/vistasGerente/BuscaUsuario.vue')
   },
   {
-    path: '/actualizar-usuario',
-    name: 'ActualizarUsuario',
-    component: () => import('@/views/vistasGerente/ActualizaUsuario.vue')
-  },
-  {
     path: '/recuperar-pass',
     name: 'RecuperarPassword',
     component: () => import('@/views/RecuperarPassword.vue')
