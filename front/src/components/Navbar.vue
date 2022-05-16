@@ -38,7 +38,7 @@ export default{
     }
   },
   mounted(){
-    this.pintaNavbar();
+   // this.pintaNavbar();
   },
   methods: {
     pintaNavbar(){
