@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar />
+
     <div class="contenedor">
       <h1>Registrar usuario</h1>
     </div>
@@ -181,9 +181,7 @@
 <script>
 window.document.title = "Registrar Usuarios";
 import UsuarioService from "@/services/UsuarioService";
-import Navbar from "../../components/Navbar.vue";
 export default {
-  components: { Navbar },
   data: () => {
     return {
       usuario: {

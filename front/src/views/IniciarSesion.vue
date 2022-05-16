@@ -63,6 +63,7 @@
 
 <script>
 window.document.title = "Iniciar Sesion";
+import { mapActions } from "vuex";
 import UsuarioService from "@/services/LoginService";
 export default {
   data() {
@@ -73,6 +74,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['setUsuario']),
+
     limpiaCampos() {
       this.email = "";
       this.password = "";
@@ -100,7 +103,7 @@ export default {
 
         if (token) {
           localStorage.setItem("token", token);
-          this.$store.dispatch('user', usuario);
+          this.setUsuario(usuario);
           this.redireccionaXrol(usuario);
 
         }

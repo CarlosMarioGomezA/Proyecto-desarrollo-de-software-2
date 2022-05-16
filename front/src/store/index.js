@@ -1,22 +1,28 @@
-import Vuex from "vuex";
+import { createStore } from "vuex";
 
-export default new Vuex.Store({
+
+export const store = createStore({
     state: {
-        usuario: null
+        usuario: null,
+        token: localStorage.getItem('token')
     },
     actions: {
-        user(context, user){
-            context.commit('user', user);
-        }
+        setUsuario(context, usuario){
+            context.commit('setUser', usuario);
+        },
     },
     mutations: {
-        user(state, user){
-            state.usuario = user;
-        }
+        setUser(state, usuario){
+            state.usuario = usuario;
+        },
     },
     getters: {
-        usuario: (state) => {
+        getUsuario: (state) => {
             return state.usuario;
+        },
+        
+        getToken(state){
+            return state.token;
         }
     }
 });

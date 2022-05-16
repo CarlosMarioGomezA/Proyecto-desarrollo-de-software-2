@@ -1,9 +1,15 @@
-import axios from "@/services/axios";
+import axios from "axios";
 
-class LoginService{
-    async iniciarSesion(objLogin){
+class LoginService {
+
+    constructor() {
+        this.baseURL = 'http://localhost:3000/';
+    }
+
+
+    async iniciarSesion(objLogin) {
         let response;
-        response = await axios.post('/auth', objLogin);
+        response = await axios.post(this.baseURL + 'auth', objLogin);
 
         return response;
     }
