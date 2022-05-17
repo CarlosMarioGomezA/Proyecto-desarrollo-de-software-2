@@ -1,23 +1,23 @@
 <template>
   <div>
-    <h1>Administración de Usuarios</h1>
-
     <!--Formulario para buscar por cedula-->
     <form class="formularioBusqueda" @submit.prevent="buscarUsuario">
+      <h1>Administración de Usuarios</h1>
       <input
+        id="campoCedula"
         class="form-label"
         v-model="busqueda"
         type="text"
         placeholder="Digite la cedula del usuario"
       />
-      <button type="submit" class="btn btn-dark">Buscar Usuario</button>
+      <button id="botonBuscar" type="submit" class="btn btn-primary btn-lg">Buscar Usuario</button>
     </form>
 
     <!--Tabla de usuarios-->
 
-    <div class="row mt-2 m-1 p-3">
+    <!--<div class="row mt-2 m-1 p-3">-->
       <div class="col-lg-20">
-        <table class="table table-striped">
+        <table class="table table-responsive table-striped">
           <thead>
             <tr>
               <th>Nombres</th>
@@ -65,7 +65,7 @@
           </tbody>
         </table>
       </div>
-    </div>
+    <!--</div>-->
     <!-- Button trigger modal -->
     <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       Launch static backdrop modal
@@ -390,6 +390,27 @@ export default {
 </script>
 
 <style scoped>
+
+#botonBuscar{
+  padding: 0.15em 0.4em;
+  margin-left: 1em;
+}
+
+#campoCedula{
+  margin-right: 1em;
+  height: 2rem;
+
+}
+
+.col-lg-20{
+  margin: 0.5em;
+}
+
+.formularioBusqueda{
+  margin-left: 2em;
+  padding-top: 1vw;
+}
+
 button {
   margin: 5px;
 }
