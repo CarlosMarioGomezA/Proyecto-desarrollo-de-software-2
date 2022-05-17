@@ -15,7 +15,7 @@
 
     <!--Tabla de usuarios-->
 
-    <!--<div class="row mt-2 m-1 p-3">-->
+    <div class="row mt-2 m-1 p-3">
       <div class="col-lg-20">
         <table class="table table-responsive table-striped">
           <thead>
