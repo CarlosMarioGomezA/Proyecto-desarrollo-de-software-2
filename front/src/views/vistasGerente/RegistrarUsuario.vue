@@ -13,9 +13,7 @@
     </div>
 
     <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
-      <div id="contenedorFormulario">
-        <a>sa</a>
-      </div>
+      
       <!--Email-->
       <div class="col-md-6">
         <label for="inputEmail" class="form-label">Correo electronico</label>
