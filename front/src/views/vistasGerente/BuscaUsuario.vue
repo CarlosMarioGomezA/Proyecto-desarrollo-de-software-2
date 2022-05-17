@@ -66,10 +66,7 @@
         </table>
       </div>
     </div>
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Launch static backdrop modal
-    </button> -->
+    
     <!-- Modal Editar-Usuario -->
     <div
       class="modal fade"
@@ -96,47 +93,7 @@
           <form>
             <div class="modal-body">
               <!--Cuerpo del modal-->
-              <div class="col-md-10">
-                <label for="inputEmail" class="form-label"
-                  >Correo electronico</label
-                >
-                <input
-                  v-model="usuarioEditar.correo"
-                  type="email"
-                  class="form-control"
-                  id="inputEmail"
-                  placeholder="Ej: juanito@gmail.com"
-                  required
-                />
-              </div>
 
-              <!--Contraseña-->
-              <div class="col-md-10">
-                <label for="inputPassword" class="form-label">Contraseña</label>
-                <input
-                  v-model="usuarioEditar.password"
-                  type="password"
-                  class="form-control"
-                  id="inputPassword"
-                  placeholder="*************"
-                  required
-                />
-              </div>
-
-              <!--Confirmar contraseña-->
-              <div class="col-md-10">
-                <label for="inputPassword2" class="form-label"
-                  >Confirmar contraseña</label
-                >
-                <input
-                  v-model="confirmarPassword"
-                  type="password"
-                  class="form-control"
-                  id="inputPassword2"
-                  placeholder="***********"
-                  required
-                />
-              </div>
               <!--Nombres-->
               <div class="col-md-10">
                 <label for="inputNombre" class="form-label">Nombres</label>
@@ -272,14 +229,14 @@ export default {
   },
 
   methods: {
-    validarContraseñas() {
-      let flag = false;
+    // validarContraseñas() {
+    //   let flag = false;
 
-      if (this.usuarioEditar.password === this.confirmarPassword) {
-        flag = true;
-      }
-      return flag;
-    },
+    //   if (this.usuarioEditar.password === this.confirmarPassword) {
+    //     flag = true;
+    //   }
+    //   return flag;
+    // },
 
     verificaCamposVacios() {
       let resultado = true;
@@ -292,9 +249,7 @@ export default {
         this.usuarioEditar.telefono === "" ||
         this.usuarioEditar.correo === "" ||
         this.usuarioEditar.rol === 0 ||
-        this.usuarioEditar.estado === 0 ||
-        this.usuarioEditar.password === "" ||
-        this.confirmarPassword === ""
+        this.usuarioEditar.estado === 0
       ) {
         resultado = false;
       }
@@ -314,7 +269,7 @@ export default {
 
     abrirModalEditar(datos) {
       this.usuarioEditar = {
-        password: "",
+        password: datos.password_usuario,
         tipoDocumento: datos.tipo_documento,
         nombre: datos.nombres,
         apellido: datos.apellidos,
@@ -329,18 +284,14 @@ export default {
 
     async editarUsuario() {
       let service = new UsuarioService();
-      if (!this.validarContraseñas()) {
-        alert("Las contraseñas no coinciden");
+      if (!this.verificaCamposVacios()) {
+        alert("No se permiten los campos en blanco");
       } else {
-        if (!this.verificaCamposVacios()) {
-          alert("No se permiten los campos en blanco");
-        } else {
-          let usuario = this.usuarioEditar;
-          await service.ActualizarUsuario(usuario);
-          alert("El Usuario ha sido actualizado satisfactoriamente");
-          this.usuarios = [];
-          this.getUsuariosBack();
-        }
+        let usuario = this.usuarioEditar;
+        await service.ActualizarUsuario(usuario);
+        alert("El Usuario ha sido actualizado satisfactoriamente");
+        this.usuarios = [];
+        this.getUsuariosBack();
       }
     },
 

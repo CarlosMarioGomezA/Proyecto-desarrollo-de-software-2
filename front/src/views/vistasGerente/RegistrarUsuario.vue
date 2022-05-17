@@ -153,8 +153,10 @@
         <select
           class="form-select"
           id="inputPregunta1"
-          v-model="preguntaSeguridad1">
+          v-model="usuario.pregunta">
           <option selected="true" disabled>Selecciona una pregunta</option>
+          <option value="1">¿Cuál es el nombre de tu mascota?</option>
+          <option value="2">¿En qué ciudad nació?</option>
         </select>
       </div>
 
@@ -162,7 +164,7 @@
       <div class="col-md-6">
         <label for="inputRespuesta1" class="form-label">Respuesta</label>
         <input
-          v-model="resPregunta1"
+          v-model="usuario.respuestaPregunta"
           type="text"
           class="form-control"
           id="inputRespuesta1"
@@ -194,10 +196,10 @@ export default {
         correo: "",
         telefono: "",
         rol: 0,
+        pregunta: "",
+        respuestaPregunta: "",
       },
       confirmarPassword: "",
-      preguntaSeguridad1: "",
-      resPregunta1: "",
     };
   },
 
@@ -212,6 +214,8 @@ export default {
       this.usuario.correo = "";
       this.usuario.telefono = "";
       this.usuario.rol = 0;
+      this.usuario.pregunta = 0;
+      this.usuario.respuestaPregunta = "";
       this.confirmarPassword = "";
     },
 
