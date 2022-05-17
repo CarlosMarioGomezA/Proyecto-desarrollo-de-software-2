@@ -11,7 +11,11 @@
         alt="logoEmpresarial"
         >
     </div>
+
     <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
+      <div id="contenedorFormulario">
+        <a>sa</a>
+      </div>
       <!--Email-->
       <div class="col-md-6">
         <label for="inputEmail" class="form-label">Correo electronico</label>
@@ -175,6 +179,7 @@
         <button type="submit" class="btn btn-primary btn-lg">Registrar Usuario</button>
       </div>
     </form>
+    
   </div>
 </template>
 
@@ -253,7 +258,16 @@ export default {
 </script>
 
 <style scoped>
-#formulario {
+#contenedorFormulario {
+  position: relative;
+  display: block;
+  z-index: -1;
+  background-color: aquamarine;
+
+}
+
+#formulario{
+  opacity: 100%;
   margin: 50px;
   margin-top: 0%;
 }
