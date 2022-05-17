@@ -44,13 +44,17 @@
               Usuario y/o contraseña incorrectas
             </div>
 
+            <div id="Bloqueo" v-if="muestraBloqueo">
+              Usuario bloqueado
+            </div>
+
             <div class="text-center text-lg-start mt-4 pt-2">
               <button 
                 id="boton"
                 type="submit" 
                 class="btn btn-primary btn-lg" 
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                Iniciar sesion
+                Iniciar sesión
               </button>
             </div>
           </form>
@@ -71,6 +75,7 @@ export default {
       email: "",
       password: "",
       muestraError: false,
+      muestraBloqueo: false
     };
   },
   methods: {
@@ -117,15 +122,14 @@ export default {
             break;
 
           case "Usuario bloqueado":
-            this.muestraError = true;
+            this.muestraBloqueo = true;
             token = error.response.data.token;
-            alert("Usuario bloqueado por demasiados intentos");
+            alert("Usuario bloqueado");
             localStorage.setItem("token", token);
             this.limpiaCampos();
             break;
 
           case "Inicie nuevamente":
-            this.muestraError = true;
             alert("Inicie nuevamente");
             break;
         }
@@ -138,6 +142,10 @@ export default {
 
 <style scoped>
   #Error {
+    color: red;
+    font-weight: 200;
+  }
+  #Bloqueo {
     color: red;
     font-weight: 200;
   }

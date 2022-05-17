@@ -9,14 +9,14 @@ class AuthController {
         let { correo, password } = req.body;
         let usu = new Usuario();
 
-        conexion.query('select * from usuarios where email = ?', correo, async (err, data) => {
+        conexion.query('select * from usuarios where email = ?', correo,  (err, data) => {
             if (err) {
                 res.status(500).json({ err });  //devuelve error al consultar de manera erronea a bd
             } else {
                 try {
                     let passDB = data[0].password_usuario;
-                    let coincidePassword = await usu.compararPassword(password, passDB); //compara el password del usuario con la de bd
-
+                    let coincidePassword =  usu.desencriptarPassword(passDB) === password? true : false; //compara el password del usuario con la de bd
+		    
                     if (coincidePassword) { //valida si coincide el password
 
                         conexion.query('update usuarios set intentos = ? where email = ?', [0, correo]);
@@ -35,6 +35,25 @@ class AuthController {
             }
         });
     }
+
+    // recuperarPassword(req, res){
+    //     let { correo } = req.body;
+
+    //     conexion.query('select * from usuarios where email = ?', correo, (err, data) => {
+    //         if (err) {
+    //             res.status(500).send(err);
+    //         } else {
+    //             if (data[0] !== null && data[0] !== undefined){
+    //                 let payload = { id: data[0].id };
+    //                 let token = jwt.sign(payload, process.env.PRIVATE_KEY);
+    //                 usu = data[0];
+    //                 res.status(200).json({ token, usuario: usu });
+    //             }else{
+    //                 res.status(404).json({ info: 'Correo no encontrado' });
+    //             }
+    //         }
+    //     });
+    // }
 }
 
 
