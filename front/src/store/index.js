@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import UsuarioService from "../services/UsuarioService";
 
 
 export const store = createStore({
@@ -10,6 +11,12 @@ export const store = createStore({
         setUsuario(context, usuario){
             context.commit('setUser', usuario);
         },
+        async validaToken(context){
+            let usu = new UsuarioService();
+            let res = await usu.validaToken();
+            let usuario = res.data.usuario;
+            context.commit('setUser', usuario);
+        }   
     },
     mutations: {
         setUser(state, usuario){

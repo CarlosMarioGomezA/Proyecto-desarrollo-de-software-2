@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="vistaBuscar">
     <!--Formulario para buscar por cedula-->
     <form class="formularioBusqueda" @submit.prevent="buscarUsuario">
       <h1>Administración de Usuarios</h1>
@@ -235,14 +235,6 @@ export default {
   },
 
   methods: {
-    // validarContraseñas() {
-    //   let flag = false;
-
-    //   if (this.usuarioEditar.password === this.confirmarPassword) {
-    //     flag = true;
-    //   }
-    //   return flag;
-    // },
 
     verificaCamposVacios() {
       let resultado = true;
@@ -347,6 +339,9 @@ export default {
 </script>
 
 <style scoped>
+  #vistaBuscar{
+    margin-top: 5rem;
+  }
 
   #botonBuscar{
     padding: 0.15em 0.4em;

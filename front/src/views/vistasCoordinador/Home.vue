@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="vistaHome">
       <div class="contenedorPrincipal" >
         <p id="titulo" class="align-items-center">Sistema de control de Vehiculos</p>
       </div>
@@ -20,7 +20,9 @@ export default {
 </script>
 
 <style scoped>
-
+#vistaHome{
+    margin-top: 5rem;
+  }
   .contenedorPrincipal{
     padding: 1rem 1rem;
     text-align: center;

@@ -1,5 +1,5 @@
 <template>
-  <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
+  <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
   <div class="container-fluid">
     <router-link v-if="getUsuario.id_rol===1" class="navbar-brand" to="/inicio-admin">
       <img
@@ -56,8 +56,13 @@ export default{
 
     }
   },
+  mounted(){
+    if(this.getToken){
+      this.validaToken();
+    }
+  },
   methods: {
-    ...mapActions(['setUsuario']),
+    ...mapActions(['setUsuario', 'validaToken']),
 
     cerrarSesion(){
       localStorage.removeItem('token');
