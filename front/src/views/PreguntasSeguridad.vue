@@ -76,4 +76,27 @@ export default {
     border: 0;
   }
 
+  #inputRespuesta{
+    border-style: none none solid none;
+    border-color: lightgray;
+    border-radius: 1rem;
+    transition: 0.5s;
+  }
+
+  #inputRespuesta:hover{
+    background-color: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+  }
+
+  .btn-lg{
+    transition: 0.5s;
+  }
+
+  .btn-lg:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 64, 184);
+    border-color: rgb(0, 64, 184);
+  }
+
 </style>

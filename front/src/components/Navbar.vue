@@ -1,8 +1,20 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
   <div class="container-fluid">
-    <router-link v-if="getUsuario.id_rol===1" class="navbar-brand" to="/inicio-admin">Pioneros</router-link>
-    <router-link v-if="getUsuario.id_rol===2" class="navbar-brand" to="/inicio-coordinador">Pioneros</router-link>
+    <router-link v-if="getUsuario.id_rol===1" class="navbar-brand" to="/inicio-admin">
+      <img
+        id="logoNavbar"
+        src="@/assets/logoPioneros200x113.png" 
+        alt="Pioneros"
+      >
+    </router-link>
+    <router-link v-if="getUsuario.id_rol===2" class="navbar-brand" to="/inicio-coordinador">
+      <img
+        id="logoNavbar"
+        src="@/assets/logoPioneros200x113.png"
+        alt="Pioneros"
+      >
+    </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -24,7 +36,10 @@
           </ul>
         </li>
         <li id="logout" class="nav-item dropdown">
-            <a @click="cerrarSesion" href="/" class="nav-link">Cerrar sesión</a>
+            <a @click="cerrarSesion" href="/" class="nav-link">
+              Cerrar sesión
+              <i class="fa-solid fa-door-closed"></i>
+            </a>
         </li>
       </ul>
     </div>
@@ -57,5 +72,20 @@ export default{
 </script>
 
 <style>
+
+  #logoNavbar{
+    width: 6rem;
+  }
+
+  *{
+    font-weight: bold;
+  }
+
+  #navbar{
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 10%, rgba(97, 179, 255, 0.616) 100%); 
+  }
+
+  
 
 </style>

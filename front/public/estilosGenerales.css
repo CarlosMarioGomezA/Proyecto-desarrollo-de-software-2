@@ -2,6 +2,15 @@
 
 *{
     font-family: "Poppins", sans-serif;
+    outline: 0 !important;
+}
+
+*:focus{
+    /*outline: none !important;
+    border: none !important;*/
+    border-color: inherit;
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
 }
 
 body{

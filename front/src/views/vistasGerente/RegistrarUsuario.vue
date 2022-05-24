@@ -2,7 +2,7 @@
   <div>
 
     <div class="contenedor">
-      <h1>Registrar usuario</h1>
+      <h1>Registro de usuarios</h1>
     </div>
     <div class="contenedorLogo">
       <img
@@ -13,170 +13,182 @@
     </div>
 
     <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
-      
-      <!--Email-->
-      <div class="col-md-6">
-        <label for="inputEmail" class="form-label">Correo electronico</label>
-        <input
-          v-model="usuario.correo"
-          type="email"
-          class="form-control"
-          id="inputEmail"
-          placeholder="Ej: juanito@gmail.com"
-          required/>
+
+      <div id="contenedorInformacion" class="row g-3">
+        <a id="tituloContenedor">Informacion de usuario</a>
+        <!--Nombres-->
+        <div class="col-md-6">
+          <label for="inputNombre" class="form-label">Nombres</label>
+          <input
+            v-model="usuario.nombre"
+            type="text"
+            class="form-control"
+            id="inputNombre"
+            placeholder="Ej: Sebastián"
+            required
+          />
+        </div>
+
+        <!--Apellidos-->
+        <div class="col-md-6">
+          <label for="inputApellido" class="form-label">Apellidos</label>
+          <input
+            v-model="usuario.apellido"
+            type="text"
+            class="form-control"
+            id="inputApellido"
+            placeholder="Ej: González"
+            required
+          />
+        </div>
+        <!--Direccion-->
+        <div class="col-md-3">
+          <label for="inputDireccion" class="form-label">Direccion</label>
+          <input
+            v-model="usuario.direccion"
+            type="text"
+            class="form-control"
+            id="inputDireccion"
+            placeholder="Ej: cll13 #03-33"
+            required
+          />
+        </div>
+
+        <!--Tipo De Documento-->
+        <div class="col-md-3">
+          <label for="inputTipoDocumento" class="form-label"
+            >Tipo de documento</label>
+          <select
+            v-model="usuario.tipoDocumento"
+            id="inputTipoDocumento"
+            class="form-select"
+            required>
+            <option disabled selected>Selecciona tipo de documento</option>
+            <option>C.C</option>
+            <option>C.E</option>
+            <option>Pasaporte</option>
+            <option>T.I</option>
+          </select>
+        </div>
+
+        <!--# de Documento-->
+        <div class="col-md-6">
+          <label for="inputNumeroDocumento" class="form-label">Número de documento</label>
+          <input
+            v-model="usuario.documento"
+            type="num"
+            class="form-control"
+            id="inputNumeroDocumento"
+            placeholder="Ej: 102020202"
+            required
+          />
+        </div>
+
+        <!--Telefono-->
+        <div class="col-md-6">
+          <label for="inputTelefono" class="form-label">Telefono</label>
+          <input
+            v-model="usuario.telefono"
+            type="tel"
+            class="form-control"
+            id="inputTelefono"
+            placeholder="Ej: 9900281"
+            required
+          />
+        </div>
+
+        <!--Cargo-->
+        <div class="col-md-6">
+          <label for="inputCargo" class="form-label">Cargo</label>
+          <select
+            class="form-select"
+            id="inputCargo"
+            v-model="usuario.rol"
+            required>
+            <option selected="true" disabled>Selecciona un cargo</option>
+            <option value="1">Gerente</option>
+            <option value="2">Coordinador de transporte</option>
+          </select>
+        </div>
       </div>
 
-      <!--Contraseña-->
-      <div class="col-md-3">
-        <label for="inputPassword" class="form-label">Contraseña</label>
-        <input
-          v-model="usuario.password"
-          type="password"
-          class="form-control"
-          id="inputPassword"
-          placeholder="*************"
-          required
-        />
-      </div>
+      <div id="contenedorInformacion" class="row g-3">
+        <a id="tituloContenedor">Acceso</a>
+        <!--Email-->
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label">Correo electronico</label>
+          <input
+            v-model="usuario.correo"
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            placeholder="Ej: juanito@gmail.com"
+            required/>
+        </div>
 
-      <!--Confirmar contraseña-->
-      <div class="col-md-3">
-        <label for="inputPassword2" class="form-label"
-          >Confirmar contraseña</label>
-        <input
-          v-model="confirmarPassword"
-          type="password"
-          class="form-control"
-          id="inputPassword2"
-          placeholder="***********"
-          required
-        />
-      </div>
-      <!--Nombres-->
-      <div class="col-md-6">
-        <label for="inputNombre" class="form-label">Nombres</label>
-        <input
-          v-model="usuario.nombre"
-          type="text"
-          class="form-control"
-          id="inputNombre"
-          placeholder="Ej: Sebastián"
-          required
-        />
-      </div>
+        <!--Contraseña-->
+        <div class="col-md-3">
+          <label for="inputPassword" class="form-label">Contraseña</label>
+          <input
+            v-model="usuario.password"
+            type="password"
+            class="form-control"
+            id="inputPassword"
+            placeholder="*************"
+            required
+          />
+        </div>
 
-      <!--Apellidos-->
-      <div class="col-md-6">
-        <label for="inputApellido" class="form-label">Apellidos</label>
-        <input
-          v-model="usuario.apellido"
-          type="text"
-          class="form-control"
-          id="inputApellido"
-          placeholder="Ej: González"
-          required
-        />
-      </div>
-      <!--Direccion-->
-      <div class="col-md-3">
-        <label for="inputDireccion" class="form-label">Direccion</label>
-        <input
-          v-model="usuario.direccion"
-          type="text"
-          class="form-control"
-          id="inputDireccion"
-          placeholder="Ej: cll13 #03-33"
-          required
-        />
-      </div>
-
-      <!--Tipo De Documento-->
-      <div class="col-md-3">
-        <label for="inputTipoDocumento" class="form-label"
-          >Tipo de documento</label>
-        <select
-          v-model="usuario.tipoDocumento"
-          id="inputTipoDocumento"
-          class="form-select"
-          required>
-          <option disabled selected>Selecciona tipo de documento</option>
-          <option>C.C</option>
-          <option>Cedula de extranjería</option>
-          <option>Pasaporte</option>
-          <option>T.I</option>
-        </select>
-      </div>
-
-      <!--# de Documento-->
-      <div class="col-md-6">
-        <label for="inputNumeroDocumento" class="form-label">Número de documento</label>
-        <input
-          v-model="usuario.documento"
-          type="num"
-          class="form-control"
-          id="inputNumeroDocumento"
-          placeholder="Ej: 102020202"
-          required
-        />
-      </div>
-
-      <!--Telefono-->
-      <div class="col-md-6">
-        <label for="inputTelefono" class="form-label">Telefono</label>
-        <input
-          v-model="usuario.telefono"
-          type="tel"
-          class="form-control"
-          id="inputTelefono"
-          placeholder="Ej: 9900281"
-          required
-        />
-      </div>
-
-      <!--Cargo-->
-      <div class="col-md-6">
-        <label for="inputCargo" class="form-label">Cargo</label>
-        <select
-          class="form-select"
-          id="inputCargo"
-          v-model="usuario.rol"
-          required>
-          <option selected="true" disabled>Selecciona un cargo</option>
-          <option value="1">Gerente</option>
-          <option value="2">Coordinador de transporte</option>
-        </select>
+        <!--Confirmar contraseña-->
+        <div class="col-md-3">
+          <label for="inputPassword2" class="form-label"
+            >Confirmar contraseña</label>
+          <input
+            v-model="confirmarPassword"
+            type="password"
+            class="form-control"
+            id="inputPassword2"
+            placeholder="***********"
+            required
+          />
+        </div>
       </div>
 
       <!-- Lo siguiente creo que se puede tomar como otro componente -->
 
-      <!-- Pregunta de seguridad #1 -->
-      <div class="col-md-6">
-        <label for="inputCargo" class="form-label">Pregunta de Seguridad</label>
-        <select
-          class="form-select"
-          id="inputPregunta1"
-          v-model="usuario.pregunta">
-          <option selected="true" disabled>Selecciona una pregunta</option>
-          <option value="1">¿Cuál es el nombre de tu mascota?</option>
-          <option value="2">¿En qué ciudad nació?</option>
-        </select>
-      </div>
+      <div id="contenedorInformacion" class="row g-3">
+        <a id="tituloContenedor">Seguridad</a>
+        <!-- Pregunta de seguridad #1 -->
+        <div class="col-md-6">
+          <label for="inputCargo" class="form-label">Pregunta de Seguridad</label>
+          <select
+            class="form-select"
+            id="inputPregunta1"
+            v-model="preguntaSeguridad1">
+            <option selected="true" disabled>Selecciona una pregunta</option>
+          </select>
+        </div>
 
-      <!--Respuesta 1-->
-      <div class="col-md-6">
-        <label for="inputRespuesta1" class="form-label">Respuesta</label>
-        <input
-          v-model="usuario.respuestaPregunta"
-          type="text"
-          class="form-control"
-          id="inputRespuesta1"
-          placeholder="Ingrese respuesta"
-        />
+        <!--Respuesta 1-->
+        <div class="col-md-6">
+          <label for="inputRespuesta1" class="form-label">Respuesta</label>
+          <input
+            v-model="resPregunta1"
+            type="text"
+            class="form-control"
+            id="inputRespuesta1"
+            placeholder="Ingrese respuesta"
+          />
+        </div>
+ 
       </div>
 
       <!--Botón-->
       <div class="contenedor">
-        <button type="submit" class="btn btn-primary btn-lg">Registrar Usuario</button>
+        <button type="submit" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-user-plus"></i>
+          Registrar
+        </button>
       </div>
     </form>
     
@@ -260,40 +272,101 @@ export default {
 </script>
 
 <style scoped>
-#contenedorFormulario {
-  position: relative;
-  display: block;
-  z-index: -1;
-  background-color: aquamarine;
 
-}
+  #contenedorFormulario {
+    position: relative;
+    display: block;
+    z-index: -1;
+    background-color: aquamarine;
 
-#formulario{
-  opacity: 100%;
-  margin: 50px;
-  margin-top: 0%;
-}
+  }
 
-.contenedor{
-  text-align: center;
-  margin-top: calc(1em + 1vw);
-}
+  #formulario{
+    opacity: 100%;
+    margin: 50px;
+    margin-top: 0%;
+  }
 
-#logo{
-  position: relative;
-  opacity: 20%;
-  width: 60%;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .contenedor{
+    text-align: center;
+    margin-top: calc(1em + 1vw);
+    margin-bottom: 2rem;
+  }
 
-.contenedorLogo{
-  /*background-color: aqua;*/
-  text-align: center;
-  z-index: -1;
-  width: 100%;
-  position: fixed;
-}
+  #logo{
+    position: relative;
+    opacity: 20%;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+  .contenedorLogo{
+    /*background-color: aqua;*/
+    text-align: center;
+    z-index: -1;
+    width: 100%;
+    position: fixed;
+  }
+
+  #contenedorInformacion{
+    padding: 1rem 1rem 2rem;
+    border: 1px solid;
+    border-radius: 2rem;
+    border-color: lightgray;
+  }
+
+  #tituloContenedor{
+    margin-left: 12px;
+    margin-top: -1.9rem;
+    background: white;
+    color:#5d5e5f;
+    position: absolute;
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  h1{
+    font-weight: bold;
+  }
+
+  .btn-lg{
+    transition: 0.5s;
+  }
+
+  .btn-lg:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 64, 184);
+    border-color: rgb(0, 64, 184);
+  }
+
+  input{
+    border-style: none none solid none;
+    border-color: lightgray;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.288);
+    transition: 0.5s;
+  }
+
+  input:hover{
+    background: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+  }
+
+  select{
+    border-style: none none solid none;
+    border-color: lightgray;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.288);
+    transition: 0.5s;
+  }
+
+  select:hover{
+    background-color: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+  }
 
 </style>
