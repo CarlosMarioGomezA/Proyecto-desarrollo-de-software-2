@@ -37,7 +37,7 @@
             </div>
 
             <div class="d-flex justify-content-between align-items-center">
-              <router-link to="/recuperar-pass">Olvidé mi contraseña</router-link>
+              <router-link id="textoLink" to="/recuperar-pass">Olvidó su contraseña?</router-link>
             </div>
 
             <div id="Error" v-if="muestraError">
@@ -51,6 +51,7 @@
                 class="btn btn-primary btn-lg" 
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">
                 Iniciar sesion
+                <i class="fa-solid fa-door-open"></i>
               </button>
             </div>
           </form>
@@ -155,6 +156,38 @@ export default {
     .h-custom {
       height: 100%;
     }
+  }
+
+  #imagenLogoEmpresarial{
+    margin: auto auto;
+  }
+
+  #inputEmail, #inputPassword{
+    border-style: none none solid none;
+    border-color: rgb(167, 167, 167);
+    background: white;
+    border-radius: 1rem;
+  }
+
+  #inputEmail:hover, #inputPassword:hover{
+    background: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+  }
+
+  #textoLink{
+    text-decoration: none;
+    color: rgb(0, 89, 255);
+  }
+  
+  .btn-lg{
+    transition: 0.5s;
+  }
+
+  .btn-lg:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 64, 184);
+    border-color: rgb(0, 64, 184);
   }
 
 </style>

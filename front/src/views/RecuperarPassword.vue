@@ -33,6 +33,7 @@
                 type="submit" 
                 class="btn btn-primary btn-lg" 
                 style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                <i class="fa-solid fa-envelope"></i>
                 Envia correo de recuperacion
               </button>
               <router-link to="/login">
@@ -41,6 +42,7 @@
                   type="button"
                   class="btn btn-primary btn-lg" 
                   style="padding-left: 2.5rem; padding-right: 2.5rem;">
+                  <i class="fa-solid fa-circle-arrow-left"></i>
                   Regresar
                 </button>
               </router-link>
@@ -83,15 +85,39 @@ export default {
     }
   }
 
+  #inputEmail{
+    border-style: none none solid none;
+    border-color: lightgray;
+    border-radius: 1rem;
+    transition: 0.5s;
+  }
+
+  #inputEmail:hover{
+    background: rgba(105, 183, 255, 0.178);
+    transition: 0.5s;
+  }
+
   #botonRegresar{
     margin: 0.3em;
     background-color: rgb(231, 10, 10);
     border-color: rgb(231, 10, 10);
+    transition: 0.5s;
   }
 
   #botonRegresar:hover{
-    background-color: rgb(217, 0, 0);
-    border-color: rgb(217, 0, 0);
+    background-color: rgb(172, 0, 0);
+    border-color: rgb(172, 0, 0);
+    transition: 0.5s;
+  }
+
+  .btn-lg{
+    transition: 0.5s;
+  }
+
+  .btn-lg:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 64, 184);
+    border-color: rgb(0, 64, 184);
   }
 
 </style>
