@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt'); //libreria usada para encriptar
-const res = require('express/lib/response');
+// const bcrypt = require('bcrypt'); //libreria usada para encriptar
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('myTotallySecretKey');
 
 class Usuario {
 
@@ -27,22 +28,40 @@ class Usuario {
     }
 
     getEstado = () =>{
-        return this.estado;
+        return this.id_estado;
+    }
+    
+    setEstado = (estado) =>{
+        this.id_estado = estado;
     }
 
-    setEstado = (estado) =>{
-        this.estado = estado;
+    setDocumento = (documento) =>{
+        this.numero_documento = documento;
+    }
+
+    getDocumento = () =>{
+        return this.numero_documento;
+    }
+
+
+    getPregunta = () =>{
+        return this.pregunta;
+    }
+
+    setPregunta = (pregunta) =>{
+        this.pregunta = pregunta;
     }
 
     //retorna password encriptado
-    encriptarPassword = async(password) => {
-        let salt = await bcrypt.genSalt(10);  //argumento necesario para encriptar
-        return await bcrypt.hash(password, salt);   
+    encriptarPassword = (password) => {
+        // let salt = await bcrypt.genSalt(10);  //argumento necesario para encriptar
+        return cryptr.encrypt(password);   
     }
 
     //retorna booleano con resultado de la comparación
-    compararPassword = async(passwordAcomparar, passwordBD) => {
-        return await bcrypt.compare(passwordAcomparar, passwordBD); 
+    desencriptarPassword = (passwordBD) => {
+        // return await bcrypt.compare(passwordAcomparar, passwordBD); 
+        return cryptr.decrypt(passwordBD);
     }
 
 }

@@ -180,6 +180,7 @@
             placeholder="Ingrese respuesta"
           />
         </div>
+ 
       </div>
 
       <!--Botón-->
@@ -210,10 +211,10 @@ export default {
         correo: "",
         telefono: "",
         rol: 0,
+        pregunta: "",
+        respuestaPregunta: "",
       },
       confirmarPassword: "",
-      preguntaSeguridad1: "",
-      resPregunta1: "",
     };
   },
 
@@ -228,6 +229,8 @@ export default {
       this.usuario.correo = "";
       this.usuario.telefono = "";
       this.usuario.rol = 0;
+      this.usuario.pregunta = 0;
+      this.usuario.respuestaPregunta = "";
       this.confirmarPassword = "";
     },
 
