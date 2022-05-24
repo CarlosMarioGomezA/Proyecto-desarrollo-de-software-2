@@ -34,6 +34,27 @@ class AuthController {
                 }
             }
         });
+    };
+
+    validaToken(req, res){
+        let token = req.params.token;
+
+        //token decodificado
+        let decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+
+        conexion.query('select * from usuarios where id = ?', decoded.id,  (err, data) => {
+            if (err) {
+                res.status(500).json({ err });  //devuelve error al consultar de manera erronea a bd
+            } else {
+                if(data[0] !== undefined && data[0] !== null){
+                    let usu = data[0];
+                    res.status(200).json({ usuario: usu });
+                }else{
+                    res.status(401).send()
+                }
+            }
+        });
+
     }
 
     // recuperarPassword(req, res){

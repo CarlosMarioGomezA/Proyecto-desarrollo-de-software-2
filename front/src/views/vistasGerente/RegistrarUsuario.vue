@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="vistaRegistrar">
 
     <div class="contenedor">
       <h1>Registro de usuarios</h1>
@@ -164,8 +164,11 @@
           <select
             class="form-select"
             id="inputPregunta1"
-            v-model="preguntaSeguridad1">
+            v-model="usuario.pregunta"
+            required>
             <option selected="true" disabled>Selecciona una pregunta</option>
+            <option value=1>¿Cuál es el nombre de tu macota?</option>
+            <option value=2>¿En qué ciudad nació?</option>
           </select>
         </div>
 
@@ -173,11 +176,12 @@
         <div class="col-md-6">
           <label for="inputRespuesta1" class="form-label">Respuesta</label>
           <input
-            v-model="resPregunta1"
+            v-model="usuario.respuestaPregunta"
             type="text"
             class="form-control"
             id="inputRespuesta1"
             placeholder="Ingrese respuesta"
+            required
           />
         </div>
  
@@ -272,6 +276,9 @@ export default {
 </script>
 
 <style scoped>
+  #vistaRegistrar{
+    margin-top: 5rem;
+  }
 
   #contenedorFormulario {
     position: relative;

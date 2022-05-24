@@ -14,6 +14,7 @@ class AuthRouter{
         const ctrl = new AuthController();
         const auth = new Autenticador();
         this.router.post('/auth', auth.validaBloqueo, ctrl.login);
+        this.router.post('/auth/:token', ctrl.validaToken);
     }
 
 }

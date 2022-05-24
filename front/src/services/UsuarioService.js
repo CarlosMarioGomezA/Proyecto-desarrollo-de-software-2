@@ -12,6 +12,12 @@ class UsuarioService {
         }
     }
 
+    async validaToken() {
+        let token = localStorage.getItem('token');
+        let response = await axios.post(this.baseURL + 'auth/' + token);
+        return response;
+    }
+
     async crearUsuario(usuario) {
         let array = await axios.post(this.baseURL + 'usuarios', usuario, {headers: this.tomaToken()});
         return array;
@@ -28,6 +34,8 @@ class UsuarioService {
         let array = await axios.put(this.baseURL + 'usuarios/' + usuario.documento, usuario, {headers: this.tomaToken()});
         return array;
     }
+
+    
 
 }
 export default UsuarioService;
