@@ -2,10 +2,23 @@ const conexion = require("../database/conexionBD");
 const Usuario = require("../models/Usuario");
 const Pregunta = require("../models/Pregunta")
 
+/**
+   *
+   * @author Juanfran
+*/
 
+
+/* Una clase de controlador que maneja las solicitudes del usuario. */
 class UsuarioController {
 
-    //metodo para crear usuario en bd
+    
+    /**
+     * Estoy tratando de insertar un nuevo usuario en la base de datos, pero necesito insertar una
+     * nueva fila en otra tabla con la identificación del usuario y la respuesta a una pregunta.
+     * </código>
+     * @param req - solicitud
+     * @param res - el objeto de respuesta
+     */
     crearUsuario(req, res) {
         let body = req.body;
         let pregunta = new Pregunta(body["pregunta"], body["respuestaPregunta"]);
@@ -13,7 +26,6 @@ class UsuarioController {
             body["apellido"], body["direccion"], body["tipoDocumento"],
             body["documento"], body["correo"], body["rol"], body["telefono"], 1, 0);
 
-        //encripta contraseña
         let pass = usuario.getPassword();
         let passHash = usuario.encriptarPassword(pass);
         usuario.setPassword(passHash);
@@ -31,7 +43,12 @@ class UsuarioController {
         
     }
 
-    //metodo que obtiene todos los usuarios con estado activo de bd
+    
+    /**
+     * Es una función que devuelve una lista de usuarios de una base de datos.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     */
     obtenerUsuariosActivos(req, res) {
         conexion.query("select * from usuarios where id_estado <> 3 ", (err, data) => {
             if (err) {
@@ -42,7 +59,12 @@ class UsuarioController {
         });
     }
 
-    //metodo que obtiene un usuario en especifico de bd
+    
+    /**
+     * Obtiene un usuario de la base de datos por id.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     */
     obtenerUsuario(req, res) {
         let id = req.params.id;
 
@@ -60,7 +82,13 @@ class UsuarioController {
 
     }
 
-    //metodo que actualiza los datos de un usuario en especifico de bd
+    
+    /**
+     * Actualiza un usuario en la base de datos, si el usuario está bloqueado, también actualiza la
+     * fecha del bloqueo.
+     * @param req - solicitud
+     * @param res - el objeto de respuesta
+     */
     actualizarUsuario(req, res) {
         let documento = req.params.documento;
         let body = req.body;

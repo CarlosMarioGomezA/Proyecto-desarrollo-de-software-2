@@ -5,6 +5,13 @@ const morgan = require("morgan");
 const UsuarioRouter  = require("./routes/UsuarioRouter");
 const AuthRouter = require('./routes/AuthRouter');
 
+/**
+   *
+   * @author Juanfran 
+*/
+
+
+/* Crea un servidor. */
 class Server {
 
     constructor (){
@@ -18,7 +25,7 @@ class Server {
         //Middlewares
         this.app.use(morgan('dev'));
         this.app.use(express.json());
-        this.app.use(cors());   //permite conexiones de origen cruzado
+        this.app.use(cors()); 
 
         //Ruta raíz del servidor
         let router = express.Router();

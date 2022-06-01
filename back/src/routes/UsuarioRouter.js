@@ -2,6 +2,13 @@ const express = require('express');
 const UsuarioController = require('../controllers/UsuarioController');
 const Autenticador = require('../middlewares/Autenticador');
 
+/**
+   *
+   * @author Juanfran 
+*/
+
+
+/* Una clase de controlador que maneja las solicitudes del usuario. */
 class UsuarioRouter {
 
     constructor() {

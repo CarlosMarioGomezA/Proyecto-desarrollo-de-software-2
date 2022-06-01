@@ -1,8 +1,23 @@
 const jwt = require('jsonwebtoken');
 const conexion = require("../database/conexionBD");
 
+/**
+   *
+   * @author Juanfran 
+*/
+
+
+/* Una clase que contiene métodos que se utilizan para validar las credenciales del usuario. */
 class Autenticador {
 
+    /**
+     * Comprueba si el token es válido, si lo es, comprueba si el usuario existe en la base de datos,
+     * si existe, permite que el usuario continúe, si no, devuelve un error.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     * @param next - La siguiente función de middleware en la pila.
+     * @returns Un error está está siendo devuelto.
+     */
     verificaToken(req, res, next) {
         try {
             let token;
@@ -30,6 +45,13 @@ class Autenticador {
         }
     }
 
+    /**
+     * Comprueba si el usuario está bloqueado o no.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     * @param next - Es una función que se utiliza para pasar el control a la siguiente función de
+     * middleware.
+     */
     verificaEstado(req, res, next) {
         conexion.query('select * from usuarios where id = ?', req.idUsuario, (err, data) => {
             if (data[0].id_estado !== 2) {
@@ -40,6 +62,13 @@ class Autenticador {
         });
     }
 
+    /**
+     * Si el usuario no es un administrador, devuelva un error 403. De lo contrario, continúe con la
+     * siguiente función.
+     * @param req - El objeto de la solicitud.
+     * @param res - El objeto de respuesta.
+     * @param next - La siguiente función de middleware en la pila.
+     */
     verificaEsAdmin(req, res, next) {
         conexion.query('select * from usuarios where id = ?', req.idUsuario, (err, data) => {
             if (err) {
@@ -56,6 +85,15 @@ class Autenticador {
         });
     }
 
+   /**
+    * Comprueba si el usuario está bloqueado, si no, continúa con la siguiente función, si lo está,
+    * comprueba si el tiempo de bloqueo ha expirado, si lo está, desbloquea al usuario, si no, envía un
+    * token con el restante tiempo al usuario.
+    * @param req - solicitud
+    * @param res - El objeto de respuesta.
+    * @param next - Es una función que se utiliza para pasar el control a la siguiente función de
+    * middleware.
+    */
     validaBloqueo(req, res, next) {
         let { correo } = req.body;
         conexion.query('select * from usuarios where email = ?', correo, (err, data) => {
@@ -100,6 +138,13 @@ class Autenticador {
         });
     }
 
+    /**
+     * Comprueba si el usuario existe en la base de datos, si existe, devuelve un error, si no,
+     * continúa con la siguiente función.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     * @param next - La siguiente función de middleware en la pila.
+     */
     validaUsuarioExistente(req, res, next){
         let {documento, correo} = req.body;
         conexion.query('select * from usuarios where numero_documento = ?', documento, (err, data) => {
@@ -125,6 +170,14 @@ class Autenticador {
         });
     }
 
+    /**
+     * Si el correo electrónico existe en la base de datos y el número de documento es el mismo que el
+     * de la base de datos, continúe con la siguiente función. De lo contrario, devolver un error.
+     * @param req - solicitud
+     * @param res - El objeto de respuesta.
+     * @param next - es una función que se utiliza para pasar el control a la siguiente función de
+     * middleware.
+     */
     validaCorreoExistente(req, res, next){
         let {documento, correo} = req.body;
         conexion.query('select * from usuarios where email = ?', correo, (err, data) => {
