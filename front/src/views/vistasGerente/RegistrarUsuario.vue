@@ -1,3 +1,6 @@
+<!--*
+ * @author SebasRome
+ *-->
 <template>
   <div id="vistaRegistrar">
 

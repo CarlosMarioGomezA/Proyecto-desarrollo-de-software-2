@@ -1,3 +1,6 @@
+<!--*
+ * @author SebasRome
+ *-->
 <template>
   <div id="vistaBuscar">
     <!--Formulario para buscar por cedula-->

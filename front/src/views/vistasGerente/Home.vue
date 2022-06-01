@@ -1,3 +1,6 @@
+<!--*
+ * @author Juanfran
+ *-->
 <template>
     <div id="vistaHome">
       <div class="contenedorPrincipal" >
@@ -17,9 +20,7 @@
 window.document.title = "Gerente";
 import { mapGetters } from "vuex";
 export default {
-  // mounted() {
-  //   console.log(this.getUsuario)
-  // },
+  
   computed: {
     ...mapGetters(['getUsuario'])
   }
