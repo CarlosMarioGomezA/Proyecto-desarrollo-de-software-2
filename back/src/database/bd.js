@@ -1,3 +1,7 @@
+/**
+   *
+   * @author Juanfran 
+*/
 
 module.exports = {
     host: process.env.HOST,

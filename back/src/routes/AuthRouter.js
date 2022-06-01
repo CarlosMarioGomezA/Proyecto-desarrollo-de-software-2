@@ -2,6 +2,13 @@ const express = require('express');
 const AuthController = require('../controllers/AuthController');
 const Autenticador = require('../middlewares/Autenticador');
 
+/**
+   *
+   * @author Juanfran 
+*/
+
+/* Es una clase de enrutador que tiene un método de configuración que configura las rutas para el
+controlador. */
 class AuthRouter{
 
     constructor(){

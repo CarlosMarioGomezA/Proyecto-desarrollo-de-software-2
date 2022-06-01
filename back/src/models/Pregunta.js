@@ -1,4 +1,9 @@
+/**
+   *
+   * @author Juanfran 
+*/
 
+/* La clase Pregunta es un modelo para crear objetos que tienen una propiedad de pregunta y respuesta. */
 class Pregunta {
 
     constructor(pregunta, respuesta){

@@ -1,7 +1,13 @@
-// const bcrypt = require('bcrypt'); //libreria usada para encriptar
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotallySecretKey');
 
+/**
+   *
+   * @author Juanfran 
+*/
+
+
+/* Una clase que representa a un usuario. */
 class Usuario {
 
     constructor(password, nombre, apellido, direccion, tipoDocumento, documento, correo, rol, telefono, estado, intentos){
@@ -54,13 +60,11 @@ class Usuario {
 
     //retorna password encriptado
     encriptarPassword = (password) => {
-        // let salt = await bcrypt.genSalt(10);  //argumento necesario para encriptar
         return cryptr.encrypt(password);   
     }
 
     //retorna booleano con resultado de la comparación
     desencriptarPassword = (passwordBD) => {
-        // return await bcrypt.compare(passwordAcomparar, passwordBD); 
         return cryptr.decrypt(passwordBD);
     }
 
