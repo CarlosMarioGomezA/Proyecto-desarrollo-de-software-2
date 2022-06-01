@@ -1,3 +1,6 @@
+<!--*
+ * @author Juanfran & SebasRome
+ *-->
 <template>
   <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-light bg-light" v-if="getUsuario">
   <div class="container-fluid">
