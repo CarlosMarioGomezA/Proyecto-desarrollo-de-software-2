@@ -1,7 +1,7 @@
-const conexion = require("../database/conexionBD");
 const Usuario = require("../models/Usuario");
 const Pregunta = require("../models/Pregunta")
-
+const ConexionBD = require("../database/conexionBD");
+const conexion = ConexionBD.getPool();
 /**
    *
    * @author Juanfran
@@ -10,7 +10,6 @@ const Pregunta = require("../models/Pregunta")
 
 /* Una clase de controlador que maneja las solicitudes del usuario. */
 class UsuarioController {
-
     
     /**
      * Estoy tratando de insertar un nuevo usuario en la base de datos, pero necesito insertar una

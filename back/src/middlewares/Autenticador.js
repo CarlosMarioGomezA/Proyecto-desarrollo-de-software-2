@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const conexion = require("../database/conexionBD");
+const ConexionBD = require("../database/conexionBD");
+const conexion = ConexionBD.getPool();
 
 /**
    *
