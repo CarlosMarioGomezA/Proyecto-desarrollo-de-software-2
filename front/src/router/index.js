@@ -37,6 +37,16 @@ const routes = [
     path: '/preguntas-seguridad',
     name: 'PreguntasSeguridad',
     component: () => import('@/views/PreguntasSeguridad.vue')
+  },
+  {
+    path: '/registrar-vehiculo',
+    name: 'RegistrarVehiculo',
+    component: () => import('@/views/vistasGerente/RegistrarVehiculo.vue')
+  },
+  {
+    path: '/buscar-vehiculo',
+    name: 'BuscarVehiculo',
+    component: () => import('@/views/vistasGerente/BuscarVehiculo.vue')
   }
 ]
 

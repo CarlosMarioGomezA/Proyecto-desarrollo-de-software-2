@@ -38,6 +38,15 @@
             <li><router-link to="/buscar-usuario" class="dropdown-item">Buscar Usuario</router-link></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a v-if="getUsuario.id_rol===1" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Gestión de Vehiculos
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><router-link to="/registrar-vehiculo" class="dropdown-item">Registrar Vehiculo</router-link></li>
+            <li><router-link to="/buscar-vehiculo" class="dropdown-item">Buscar Vehiculo</router-link></li>
+          </ul>
+        </li>
         <li id="logout" class="nav-item dropdown">
             <a @click="cerrarSesion" href="/" class="nav-link">
               Cerrar sesión
