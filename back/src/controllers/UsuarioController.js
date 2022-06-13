@@ -29,15 +29,19 @@ class UsuarioController {
         let passHash = usuario.encriptarPassword(pass);
         usuario.setPassword(passHash);
         
-        conexion.query('insert into usuarios set ?',[usuario], () =>{
-            conexion.query('insert into detalles_preguntas_usuarios (id_pregunta, cedula_usuario, respuesta_pregunta) values (?, ?, ?)', 
-            [pregunta.getPregunta(), usuario.getDocumento(), pregunta.getRespuesta()], (err, data) => {
-                if (err) {
-                    res.status(500).send(err);
-                } else {
-                    res.status(201).json({ info: "usuario creado!" });
-                }
-            });
+        conexion.query('insert into usuarios set ?',[usuario], (err, data) =>{
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                conexion.query('insert into detalles_preguntas_usuarios (id_pregunta, cedula_usuario, respuesta_pregunta) values (?, ?, ?)', 
+                [pregunta.getPregunta(), usuario.getDocumento(), pregunta.getRespuesta()], (err, data) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    } else {
+                        res.status(201).json({ info: "usuario creado!" });
+                    }
+                });
+            }
         });
         
     }
