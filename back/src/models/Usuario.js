@@ -22,6 +22,7 @@ class Usuario {
         this.telefono = telefono;
         this.id_estado = estado; 
         this.intentos = intentos;
+        this.fecha_bloqueo = "";
     }
 
     //getters and setters a usar
