@@ -89,20 +89,32 @@ INSERT INTO usuarios(tipo_documento, numero_documento, nombres, apellidos, direc
 INSERT INTO detalles_preguntas_usuarios(id_pregunta, cedula_usuario, respuesta_pregunta) VALUES (id_pregunta, numero_documento, respuesta_pregunta);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_vehiculo` (IN `placa_v` VARCHAR(50), IN `avaluo_v` INT, IN `impuestos_v` INT, IN `modelo_v` VARCHAR(50), IN `propietario_v` VARCHAR(50), IN `tipo_combustible_v` VARCHAR(50), IN `consumo_combustible_v` INT, IN `licencia_transito_v` VARCHAR(50), IN `tarjeta_operaciones_v` VARCHAR(50), IN `tipo_vehiculo_v` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_vehiculo` (IN `placa_v` VARCHAR(50), IN `marca_v` VARCHAR(50), IN `avaluo_v` INT, IN `impuestos_v` INT, IN `modelo_v` VARCHAR(50), IN `propietario_v` VARCHAR(50), IN `tipo_combustible_v` VARCHAR(50), IN `consumo_combustible_v` INT, IN `licencia_transito_v` VARCHAR(50), IN `tarjeta_operaciones_v` VARCHAR(50), IN `tipo_vehiculo_v` VARCHAR(50))  NO SQL
     SQL SECURITY INVOKER
     COMMENT 'registra la informacion general del vehiculo'
-INSERT INTO vehiculos (vehiculos.placa, vehiculos.modelo, vehiculos.tipo_combustible, vehiculos.consumo_combustible, vehiculos.impuesto_vehiculo, vehiculos.avaluo, vehiculos.licencia_transito, vehiculos.tarjeta_operaciones, vehiculos.cedula_propietario, vehiculos.tipo_vehiculo) VALUES (placa_v, modelo_v, tipo_combustible_v, consumo_combustible_v, impuestos_v, avaluo_v, licencia_transito_v, tarjeta_operaciones_v, propietario_v, tipo_vehiculo_v)$$
+INSERT INTO vehiculos (vehiculos.placa, vehiculos.marca, vehiculos.modelo, vehiculos.tipo_combustible, vehiculos.consumo_combustible, vehiculos.impuesto_vehiculo, vehiculos.avaluo, vehiculos.licencia_transito, vehiculos.tarjeta_operaciones, vehiculos.cedula_propietario, vehiculos.tipo_vehiculo) VALUES (placa_v, marca_v, modelo_v, tipo_combustible_v, consumo_combustible_v, impuestos_v, avaluo_v, licencia_transito_v, tarjeta_operaciones_v, propietario_v, tipo_vehiculo_v)$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_vehiculos` (IN `placa_v` VARCHAR(50), IN `avaluo_v` INT, IN `impuestos_v` INT, IN `modelo_v` VARCHAR(50), IN `propietario_v` VARCHAR(50), IN `tipo_combustible_v` VARCHAR(50), IN `consumo_combustible_v` INT, IN `licencia_transito_v` VARCHAR(50), IN `tarjeta_operaciones_v` VARCHAR(50), IN `tipo_vehiculo_v` INT, IN `aceite_motor` VARCHAR(50), IN `aceite_transmision` VARCHAR(50), IN `frenos_delanteros` VARCHAR(50), IN `frenos_traseros` VARCHAR(50), IN `bateria_principal` VARCHAR(50), IN `bateria_secundaria` VARCHAR(50), IN `suspencion_delantera` VARCHAR(50), IN `suspencion_trasera` VARCHAR(50))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrar_vehiculos` (IN `placa_v` VARCHAR(50), IN `marca_v` VARCHAR(50), IN `avaluo_v` INT, IN `impuestos_v` INT, IN `modelo_v` VARCHAR(50), IN `propietario_v` VARCHAR(50), IN `tipo_combustible_v` VARCHAR(50), IN `consumo_combustible_v` INT, IN `licencia_transito_v` VARCHAR(50), IN `tarjeta_operaciones_v` VARCHAR(50), IN `tipo_vehiculo_v` VARCHAR(50), IN `aceite_motor` VARCHAR(50), IN `aceite_transmision` VARCHAR(50), IN `frenos_delanteros` VARCHAR(50), IN `frenos_traseros` VARCHAR(50), IN `bateria_principal` VARCHAR(50), IN `bateria_secundaria` VARCHAR(50), IN `suspencion_delantera` VARCHAR(50), IN `suspencion_trasera` VARCHAR(50))  NO SQL
     SQL SECURITY INVOKER
     COMMENT 'registra la informacion del vehiculo'
 BEGIN
 CALL registrar_repuestos_vehiculos(placa_v, aceite_motor, aceite_transmision,frenos_delanteros, frenos_traseros,bateria_principal,bateria_secundaria, suspencion_delantera, suspencion_trasera);
-CALL registrar_vehiculo( placa_v,  avaluo_v,  impuestos_v,  modelo_v, propietario_v, tipo_combustible_v,  consumo_combustible_v,  licencia_transito_v,  tarjeta_operaciones_v, tipo_vehiculo_v); 
+CALL registrar_vehiculo( placa_v, marca_v, avaluo_v,  impuestos_v,  modelo_v, propietario_v, tipo_combustible_v,  consumo_combustible_v,  licencia_transito_v,  tarjeta_operaciones_v, tipo_vehiculo_v); 
 END$$
 
+CREATE DEFINER=root@localhost PROCEDURE obtener_informacion_vehiculo(IN placa_v VARCHAR(50)) COMMENT 'obtiene informacion basica del vehiculo' NOT DETERMINISTIC NO SQL SQL SECURITY INVOKER SELECT
+vehiculos.placa,
+vehiculos.tipo_vehiculo,
+vehiculos.marca,
+vehiculos.modelo,
+vehiculos.licencia_transito,
+vehiculos.cedula_propietario
+FROM vehiculos
+WHERE 
+vehiculos.placa = placa_v
+
 DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -387,6 +399,7 @@ INSERT INTO `usuarios` (`id`, `tipo_documento`, `numero_documento`, `nombres`, `
 
 CREATE TABLE `vehiculos` (
   `placa` varchar(20) NOT NULL,
+  `marca` varchar(50) NOT NULL,
   `modelo` varchar(50) NOT NULL,
   `tipo_combustible` varchar(20) NOT NULL,
   `consumo_combustible` double NOT NULL,
@@ -402,8 +415,8 @@ CREATE TABLE `vehiculos` (
 -- Volcado de datos para la tabla `vehiculos`
 --
 
-INSERT INTO `vehiculos` (`placa`, `modelo`, `tipo_combustible`, `consumo_combustible`, `impuesto_vehiculo`, `avaluo`, `licencia_transito`, `tarjeta_operaciones`, `cedula_propietario`, `tipo_vehiculo`) VALUES
-('VYT098', '2012', 'GASOLINA', 70, 150000, 30000000, '654916919', '167197964796', '1371976979', 'Bus');
+INSERT INTO `vehiculos`  VALUES
+('VYT098', 'mercedez', '2012', 'GASOLINA', 70, 150000, 30000000, '654916919', '167197964796', '1371976979', 'Bus');
 
 -- --------------------------------------------------------
 
