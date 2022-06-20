@@ -4,6 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const UsuarioRouter  = require("./routes/UsuarioRouter");
 const AuthRouter = require('./routes/AuthRouter');
+const VehiculoRouter = require('./routes/VehiculoRouter');
 
 /**
    *
@@ -38,8 +39,10 @@ class Server {
         
         let objUsuRouter = new UsuarioRouter();
         let objAuthRouter = new AuthRouter();
+        let objVehiculoRouter = new VehiculoRouter();
         this.app.use(objUsuRouter.router);
         this.app.use(objAuthRouter.router);
+        this.app.use(objVehiculoRouter.router);
 
         //Servidor a la escucha
         this.app.listen(this.app.get('port'), () => {
