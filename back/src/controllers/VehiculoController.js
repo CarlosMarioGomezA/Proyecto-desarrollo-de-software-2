@@ -40,7 +40,7 @@ class VehiculoController {
                 res.status(500).send(err);
             } else {
                 console.log(data)
-                res.status(200).json(data[0][0]);
+                res.status(200).json(data[0]);
             }
         });
     }
@@ -50,7 +50,7 @@ class VehiculoController {
             if (err) {
                 res.status(500).send(err);
             } else {
-                res.status(200).json(data[0][0]);
+                res.status(200).json(data[0]);
             }
         });
     }
