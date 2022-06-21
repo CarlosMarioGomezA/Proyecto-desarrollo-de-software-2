@@ -33,7 +33,7 @@ class VehiculoController {
         });
     }
 
-    obtenerVehiculos(req, res) {
+    obtenerVehiculo(req, res) {
         let placa = req.params.placa;
         conexion.query("call obtener_informacion_vehiculo(?)", placa, (err, data) => {
             if (err) {
@@ -44,6 +44,17 @@ class VehiculoController {
             }
         });
     }
+
+    obtenerVehiculos(req, res) {
+        conexion.query("call obtener_vehiculos()", (err, data) => {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.status(200).json(data[0][0]);
+            }
+        });
+    }
+
 
 }
 

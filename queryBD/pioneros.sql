@@ -113,6 +113,9 @@ FROM vehiculos
 WHERE 
 vehiculos.placa = placa_v
 
+CREATE PROCEDURE obtener_vehiculos() COMMENT 'obtiene la lista de vehiculos ' NOT DETERMINISTIC NO SQL SQL SECURITY INVOKER SELECT vehiculos.placa, vehiculos.tipo_vehiculo, vehiculos.marca, vehiculos.modelo, vehiculos.avaluo, vehiculos.licencia_transito, vehiculos.cedula_propietario FROM vehiculos
+
+
 DELIMITER ;
 
 
