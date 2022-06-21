@@ -18,10 +18,9 @@ class VehiculoRouter{
             //instance to controller
             const ctrl = new VehiculoController();
             const auth = new Autenticador();
-            this.router.post('/vehiculos',  ctrl.crearVehiculo);
-            this.router.get('/vehiculos/:placa', ctrl.obtenerVehiculos);
-            // this.router.get('/vehiculos/:id', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin], ctrl.obtenerVehiculo);
-            // this.router.put('/vehiculos/:id', [auth.verificaToken, auth.verificaEstado, auth.verificaEsAdmin], ctrl.actualizarVehiculo);
+            this.router.post('/vehiculos', [auth.verificaToken, auth.verificaEstado], ctrl.crearVehiculo);
+            this.router.get('/vehiculos', [auth.verificaToken, auth.verificaEstado], ctrl.obtenerVehiculos);
+            this.router.get('/vehiculos/:placa', [auth.verificaToken, auth.verificaEstado], ctrl.obtenerVehiculo);
         }
     
 }
