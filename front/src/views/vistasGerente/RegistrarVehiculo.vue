@@ -6,7 +6,7 @@
     <h1>Registrar Vehiculo</h1>
   </div>
 
-  <form id="formulario" class="row g-3" @submit.prevent="">
+  <form id="formulario" class="row g-3" @submit.prevent="enviarDatos">
 
       <div id="contenedorInformacion" class="row g-3">
         <a id="tituloContenedor">Informacion del Vehiculo</a>
@@ -14,7 +14,7 @@
         <div class="col-md-6">
           <label for="inputPlaca" class="form-label">Placa</label>
           <input
-            
+            v-model="vehiculo.placa"
             type="text"
             class="form-control"
             id="inputPlaca"
@@ -27,7 +27,7 @@
         <div class="col-md-6">
           <label for="inputMarca" class="form-label">Marca</label>
           <input
-            
+            v-model="vehiculo.marca"
             type="text"
             class="form-control"
             id="inputMarca"
@@ -39,7 +39,7 @@
         <div class="col-md-3">
           <label for="inputDireccion" class="form-label">Modelo</label>
           <input
-            
+            v-model="vehiculo.modelo"
             type="text"
             class="form-control"
             id="inputModelo"
@@ -53,7 +53,7 @@
           <label for="inputTipoDocumento" class="form-label"
             >Tipo de Combustible</label>
           <select
-            
+            v-model="vehiculo.tipoCombustible"
             id="inputTipoCombustible"
             class="form-select"
             required>
@@ -67,7 +67,7 @@
         <div class="col-md-6">
           <label for="inputNumeroDocumento" class="form-label">Consumo de Combustible</label>
           <input
-            
+            v-model="vehiculo.consumoCombustible"
             type="num"
             class="form-control"
             id="inputConsumoCombustible"
@@ -80,7 +80,7 @@
         <div class="col-md-6">
           <label for="inputTelefono" class="form-label">Impuesto del vehiculo</label>
           <input
-            
+            v-model="vehiculo.impuestoVehiculo"
             type="tel"
             class="form-control"
             id="inputImpuesto"
@@ -93,7 +93,7 @@
         <div class="col-md-6">
           <label for="inputTelefono" class="form-label">Avaluo</label>
           <input
-            
+            v-model="vehiculo.avaluo"
             type="text"
             class="form-control"
             id="inputAvaluo"
@@ -106,7 +106,7 @@
         <div class="col-md-6">
           <label for="inputLicencia" class="form-label">Licencia de transito</label>
           <input
-            
+            v-model="vehiculo.licenciaTransito"
             type="text"
             class="form-control"
             id="inputLicencia"
@@ -117,9 +117,9 @@
 
         <!--Propietario-->
         <div class="col-md-6">
-          <label for="inputPropietario" class="form-label">Propietario</label>
+          <label for="inputPropietario" class="form-label">Cedula del Propietario</label>
           <input
-            
+            v-model="vehiculo.cedulaPropietario"
             type="text"
             class="form-control"
             id="inputPropietario"
@@ -132,7 +132,7 @@
         <div class="col-md-6">
           <label for="inputTarjetaOperaciones" class="form-label">Tarjeta de Operaciones</label>
           <input
-            
+            v-model="vehiculo.tarjetaOperaciones"
             type="text"
             class="form-control"
             id="inputTarjertaOperaciones"
@@ -146,11 +146,11 @@
           <select
             class="form-select"
             id="inputTipoVehiculo"
-            
+            v-model="vehiculo.tipoVehiculo"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Vehiculo</option>
-            <option value="1">Bus</option>
-            <option value="2">Buseta</option>
+            <option >Bus</option>
+            <option >Buseta</option>
           </select>
         </div>
 
@@ -161,7 +161,7 @@
           <select
             class="form-select"
             id="inputAceiteMotor"
-            
+            v-model="vehiculo.aceiteMotor"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Aceite Por referencia</option>
             <option value="RP0001">0W30</option>
@@ -177,7 +177,7 @@
           <select
             class="form-select"
             id="inputAceiteTransmision"
-            
+            v-model="vehiculo.aceiteTransmision"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Aceite Por referencia</option>
             <option value="RP0004">XT-5-QMC</option>
@@ -193,7 +193,7 @@
           <select
             class="form-select"
             id="inputFrenosDelanteros"
-            
+            v-model="vehiculo.frenosDelanteros"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Frenos Por referencia</option>
             <option value="RP0007">SDB000624</option>
@@ -205,11 +205,11 @@
         <!--Tipos de frenos Traseros -->
 
          <div class="col-md-6">
-          <label for="inputFrenosDelanteros" class="form-label">Tipos de frenos trasero</label>
+          <label for="inputFrenosTraseros" class="form-label">Tipos de frenos trasero</label>
           <select
             class="form-select"
-            id="inputFrenosDelanteros"
-            
+            id="inputFrenosTraseros"
+            v-model="vehiculo.frenosTraseros"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Frenos Por referencia</option>
             <option value="RP0007">SDB000624</option>
@@ -220,11 +220,11 @@
         <!--Bateria Principal -->
 
          <div class="col-md-6">
-          <label for="inputFrenosDelanteros" class="form-label">Bateria Principal</label>
+          <label for="inputBateriaPrincipal" class="form-label">Bateria Principal</label>
           <select
             class="form-select"
-            id="inputFrenosDelanteros"
-            
+            id="inputBateriaPrincipal"
+            v-model="vehiculo.bateriaPrincipal"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Bateria por referencia</option>
             <option value="RP0011">185/80R14</option>
@@ -240,7 +240,7 @@
           <select
             class="form-select"
             id="inputFrenosDelanteros"
-            
+            v-model="vehiculo.bateriaSecundaria"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Bateria por referencia</option>
             <option value="RP0011">185/80R14</option>
@@ -252,11 +252,11 @@
          <!--Suspención Delantera -->
 
          <div class="col-md-6">
-          <label for="inputSuspencionDelantera" class="form-label">Suspención Delantero</label>
+          <label for="inputSuspencionDelantera" class="form-label">Suspención Delantera</label>
           <select
             class="form-select"
             id="inputSuspencionDelantera"
-            
+            v-model="vehiculo.suspencionDelantera"
             required>
             <option selected="true" disabled>Selecciona un Tipo de suspención por referencia</option>
             <option value="RP0009">SP55819</option>
@@ -267,11 +267,11 @@
          <!--Suspención Trasera -->
 
          <div class="col-md-6">
-          <label for="inputFrenosDelanteros" class="form-label">Suspención Secundaria</label>
+          <label for="inputFrenosDelanteros" class="form-label">Suspención Trasera</label>
           <select
             class="form-select"
             id="inputFrenosDelanteros"
-            
+            v-model="vehiculo.suspencionTrasera"
             required>
             <option selected="true" disabled>Selecciona un Tipo de Suspención por referencia</option>
             <option value="RP0009">SP55819</option>
@@ -294,13 +294,50 @@
 </template>
 
 <script>
+import VehiculoService from '@/services/VehiculoService';
+
 export default {
 data: () => {
   return {
-      vehiculos: [],
-      
+      vehiculo:{
+        placa: "",
+        marca: "",
+        modelo:"",
+        tipoCombustible: "",
+        consumoCombustible: "",
+        impuestoVehiculo: "",
+        avaluo: "",
+        licenciaTransito: "",
+        cedulaPropietario: "",
+        tarjetaOperaciones: "",
+        tipoVehiculo: "",
+        aceiteMotor: "",
+        aceiteTransmision: "",
+        frenosDelanteros: "",
+        frenosTraseros: "",
+        bateriaPrincipal: "",
+        bateriaSecundaria: "",
+        suspencionDelantera: "",
+        suspencionTrasera: "",
+      }   
   }
+},
 
+methods: {
+
+  async enviarDatos(){
+    let vehiculo = this.vehiculo;
+    let service = new VehiculoService();
+
+    try {
+      service.crearVehiculo(vehiculo);
+      alert('El vehiculo se creo satisfactoriamente');
+    } catch (error) {
+      let response = error.response.data.info;
+      alert(response);
+      
+    }
+  }
 }
 }
 </script>
