@@ -307,6 +307,7 @@
 </template>
 
 <script>
+window.document.title = "Registrar Vehiculo";
 import VehiculoService from '@/services/VehiculoService';
 
 export default {

@@ -8,7 +8,7 @@
 </div>
 
  <!--Formulario para buscar por cedula-->
-    <form class="formularioBusqueda" @submit.prevent="">
+    <form class="formularioBusqueda" @submit.prevent="buscarVehiculo">
       <input
         id="campoPlaca"
         class="form-label"
@@ -35,19 +35,18 @@
               <th>Avaluo</th>
               <th>Licencia de Transito</th>
               <th>Cedula de Propietario</th>
-              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(vehiculo, index) in vehiculos" :key="index">
               <!--Ciclo que recorre el arreglo de usuarios que vienen de las B.D-->
               <td>{{ vehiculo.placa }}</td>
-              <td>{{ vehiculo.tipoVehiculo }}</td>
+              <td>{{ vehiculo.tipo_vehiculo }}</td>
               <td>{{ vehiculo.marca }}</td>
               <td>{{ vehiculo.modelo }}</td>
-              <td>{{ vehiculo.avaluo}}</td>
-              <td>{{ vehiculo.licenciaTransito }}</td>
-              <td>{{ vehiculo.cedulaPropietario}}</td>
+              <td>{{ vehiculo.avaluo }}</td>
+              <td>{{ vehiculo.licencia_transito }}</td>
+              <td>{{ vehiculo.cedula_propietario }}</td>
             </tr>
           </tbody>
         </table>
@@ -58,29 +57,54 @@
 </template>
 
 <script>
+window.document.title = "Buscar Vehiculo";
+import VehiculoService from '../../services/VehiculoService.js';
+
 export default {
 data: () => {
     return {
       vehiculos: [],
       busqueda: "",
 
-      usuarioEditar: {
-        password: "",
-        nombre: "",
-        apellido: "",
-        direccion: "",
-        tipoDocumento: "",
-        documento: "",
-        correo: "",
-        rol: 0,
-        telefono: "",
-        estado: 0,
-      },
-      //Validaciones
-      confirmarPassword: "",
-      btnActualizar: false,
     };
   },
+
+  mounted() {
+    this.getVehiculosBack();
+  },
+
+  methods: {
+     async getVehiculosBack() {
+      let service = new VehiculoService();
+      let response = await service.obtenerVehiculos();
+      let arrayPeticion = response.data;
+      let vehiculoBd = {};
+      for (let i = 0; i < arrayPeticion.length; i++) {
+        vehiculoBd = arrayPeticion[i];
+        this.vehiculos.push(vehiculoBd);
+      }
+    },
+    buscarVehiculo() {
+      let busqueda = this.busqueda;
+      let resultadoBusqueda = [];
+      let vehiculo;
+      let placa;
+
+      if (busqueda !== "") {
+        for (let i = 0; i < this.vehiculos.length; i++) {
+          vehiculo = this.vehiculos[i];
+          placa = vehiculo.placa;
+
+          if (busqueda === placa) {
+            resultadoBusqueda.push(vehiculo);
+          }
+        }
+        this.vehiculos = resultadoBusqueda;
+      } else {
+        alert("Ingrese numero de documento");
+      }
+    },
+  }
 }
 </script>
 

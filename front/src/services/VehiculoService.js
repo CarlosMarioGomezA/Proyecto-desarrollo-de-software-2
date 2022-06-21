@@ -38,6 +38,15 @@ class VehiculoService {
         return array;
     }
 
+    /**
+     * Es una función asíncrona que devuelve una matriz de objetos de una llamada a la API.
+     * @returns Una matriz de objetos.
+     */
+    async obtenerVehiculos() {
+        let array = await axios.get(this.baseURL + 'vehiculos', {headers: this.tomaToken()});
+        return array;
+    }
+
 }
 
 export default VehiculoService;

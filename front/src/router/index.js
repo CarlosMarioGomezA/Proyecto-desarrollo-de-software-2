@@ -41,12 +41,12 @@ const routes = [
   {
     path: '/registrar-vehiculo',
     name: 'RegistrarVehiculo',
-    component: () => import('@/views/vistasGerente/RegistrarVehiculo.vue')
+    component: () => import('@/views/vistasCoordinador/RegistrarVehiculo.vue')
   },
   {
     path: '/buscar-vehiculo',
     name: 'BuscarVehiculo',
-    component: () => import('@/views/vistasGerente/BuscarVehiculo.vue')
+    component: () => import('@/views/vistasCoordinador/BuscarVehiculo.vue')
   }
 ]
 
