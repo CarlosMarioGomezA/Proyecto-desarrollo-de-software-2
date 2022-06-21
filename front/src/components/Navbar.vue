@@ -39,7 +39,7 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a v-if="getUsuario.id_rol===1" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a v-if="getUsuario.id_rol===2" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Gestión de Vehiculos
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
