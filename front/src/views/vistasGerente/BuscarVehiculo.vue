@@ -2,13 +2,10 @@
  * @author SebasRome
  *-->
 <template>
-
-<div id="BuscarVehiculo">
-    <h1>Buscar Vehiculo</h1>
-</div>
-
- <!--Formulario para buscar por cedula-->
+<div id="vistaBuscar">
+    <!--Formulario para buscar por cedula-->
     <form class="formularioBusqueda" @submit.prevent="">
+      <h1>Administración de vehículos</h1>
       <input
         id="campoPlaca"
         class="form-label"
@@ -23,7 +20,7 @@
 
     <!--Tabla de usuarios-->
 
-     <div class="row mt-2 m-1 p-3">
+    <div class="row mt-2 m-1 p-3">
       <div class="col-lg-20">
         <table class="table table-responsive table-striped">
           <thead>
@@ -53,8 +50,7 @@
         </table>
       </div>
     </div>
-        
-  
+</div>
 </template>
 
 <script>
@@ -85,21 +81,25 @@ data: () => {
 </script>
 
 <style scoped>
-
-#BuscarVehiculo{
-    margin-top: 4.5rem;
-}
-.formularioBusqueda{
-    margin-left: 2em;
-    padding-top: 1vw;
+  #vistaBuscar{
+    margin-top: 5rem;
   }
- #botonBuscar{
+
+  #botonBuscar{
     padding: 0.15em 0.4em;
     margin-left: 1em;
     border-radius: 50%;
   }
 
-  #campoPlaca{
+  #campoCedula, 
+  #inputPassword, 
+  #inputPassword2, 
+  #inputNombre, 
+  #inputApellido, 
+  #inputDireccion,
+  #inputTelefono,
+  #inputCargo,
+  #inputEstado{
     margin-right: 0.5rem;
     height: 2rem;
     border-style: none none solid none;
@@ -108,6 +108,68 @@ data: () => {
     padding: 0.5rem;
     transition: 0.5s;
     background-color: white;
+  }
+
+  #campoCedula:hover,
+  #inputPassword:hover, 
+  #inputPassword2:hover, 
+  #inputNombre:hover, 
+  #inputApellido:hover, 
+  #inputDireccion:hover,
+  #inputTelefono:hover,
+  #inputCargo:hover,
+  #inputEstado:hover{
+    background-color: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+    transition: 0.5s;
+  }
+
+  #opcionLista:hover{
+    background-color: rgba(105, 183, 255, 0.178);
+    color: rgb(0, 0, 0);
+  }
+
+  .col-lg-20{
+    margin: 0.5em;
+  }
+
+  .formularioBusqueda{
+    margin-left: 2em;
+    padding-top: 1vw;
+  }
+
+  button {
+    margin: 5px;
+  }
+  input {
+    margin-left: 21px;
+    margin-right: 30px;
+  }
+  select {
+    margin-left: 21px;
+    margin-right: 30px;
+  }
+
+  .btn-lg{
+    transition: 0.5s;
+  }
+
+  .btn-lg:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 73, 207);
+    border-color: rgb(0, 73, 207);
+  }
+  
+  .btn-success{    
+    transition: 0.5s;
+    background-color: rgb(34, 111, 255);
+    border-color: rgb(34, 111, 255);
+  }
+
+    .btn-success:hover{
+    transition: 0.5s;
+    background-color: rgb(0, 73, 207);
+    border-color: rgb(0, 73, 207);
   }
 
 </style>
